@@ -1,0 +1,33 @@
+name: Submit benchmark results
+description: Share bench.py results from your machine so they can be added to the dataset.
+title: "Results: <CPU> / <GPU or no GPU>"
+labels: ["results"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for adding a data point. Run `python3 bench.py <models> --csv my-results.csv` and paste the file below.
+        By submitting, you agree that your results are published in this repository under CC BY 4.0.
+  - type: textarea
+    id: csv
+    attributes:
+      label: bench.py CSV output
+      description: Paste the whole file, including the header row.
+      render: text
+    validations:
+      required: true
+  - type: input
+    id: machine
+    attributes:
+      label: Machine
+      description: For example a ThinkPad T480, a Raspberry Pi 5 or a home-built desktop.
+  - type: input
+    id: credit
+    attributes:
+      label: Credit
+      description: How you'd like to be credited (a name, handle or link). Leave it blank to stay anonymous.
+  - type: textarea
+    id: notes
+    attributes:
+      label: Notes
+      description: Anything unusual, such as power settings, other load on the machine or memory speed.

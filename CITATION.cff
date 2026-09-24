@@ -1,0 +1,20 @@
+cff-version: 1.2.0
+message: "If you use these numbers or the script, please cite them as below and link to https://arynwood.com/local-ai-cpu-only.html"
+title: "Local AI benchmarks: Ollama generation speed on CPU and GPU"
+type: dataset
+authors:
+  - family-names: Noble
+    given-names: Lorelei
+    orcid: "https://orcid.org/0009-0007-8723-2857"
+url: "https://arynwood.com/local-ai-cpu-only.html"
+repository-code: "https://github.com/Arynwood-Technology/local-ai-benchmarks"
+license: CC-BY-4.0
+date-released: "2026-09-24"
+keywords:
+  - ollama
+  - llm
+  - benchmark
+  - local-ai
+  - cpu
+  - gpu
+  - linux
