@@ -31,7 +31,7 @@ import urllib.request
 PROMPT = 'Explain in about 150 words why someone might run a language model locally.'
 SEED = 42  # fixes the answer text; it has no effect on speed
 FIELDS = ['date', 'cpu', 'ram_gb', 'gpu', 'os', 'ollama_version', 'model', 'quantization', 'mode',
-          'warm_tokens_per_s', 'cold_seconds', 'memory_gb', 'warm_runs', 'num_predict']
+          'warm_tokens_per_s', 'cold_seconds', 'memory_gb', 'gpu_share_pct', 'warm_runs', 'num_predict']
 
 
 def api(host, path, body=None, timeout=900):
@@ -52,12 +52,14 @@ def generate(host, model, mode, num_predict):
     return api(host, '/api/generate', {'model': model, 'prompt': PROMPT, 'stream': False, 'options': options})
 
 
-def loaded_memory_gb(host, model, mode):
+def loaded_memory(host, model):
+    """Total memory Ollama reports for the loaded model (GB) and the share of it on the GPU (%)."""
+    wanted = {model, model if ':' in model else model + ':latest'}
     for m in api(host, '/api/ps').get('models', []):
-        if m.get('name') == model or m.get('model') == model:
-            size = m.get('size_vram', 0) if mode == 'gpu' else m.get('size', 0)
-            return round(size / 1e9, 1)
-    return ''
+        if m.get('name') in wanted or m.get('model') in wanted:
+            size = m.get('size', 0)
+            return round(size / 1e9, 1), (round(100 * m.get('size_vram', 0) / size) if size else 0)
+    return '', ''
 
 
 def read_first(path, pattern):
@@ -123,7 +125,7 @@ def main():
             unload(host, model)
             cold = generate(host, model, mode, args.num_predict)
             cold_s = round(cold['total_duration'] / 1e9, 1)
-            memory = loaded_memory_gb(host, model, mode)
+            memory, share = loaded_memory(host, model)
             speeds = []
             for _ in range(args.runs):
                 r = generate(host, model, mode, args.num_predict)
@@ -131,8 +133,9 @@ def main():
             warm = round(statistics.median(speeds), 1)
             rows.append({'date': datetime.date.today().isoformat(), **hw, 'ollama_version': version, 'model': model,
                          'quantization': quant, 'mode': mode, 'warm_tokens_per_s': warm, 'cold_seconds': cold_s,
-                         'memory_gb': memory, 'warm_runs': args.runs, 'num_predict': args.num_predict})
-            print(f'{model:28} {mode:3}  {warm:6} tokens/s warm   {cold_s:5} s cold   {memory} GB')
+                         'memory_gb': memory, 'gpu_share_pct': share, 'warm_runs': args.runs, 'num_predict': args.num_predict})
+            where = '' if mode == 'cpu' or share in ('', 100) else f'   ({100 - share}% CPU / {share}% GPU)'
+            print(f'{model:28} {mode:3}  {warm:6} tokens/s warm   {cold_s:5} s cold   {memory} GB{where}')
         unload(host, model)
 
     if args.csv:

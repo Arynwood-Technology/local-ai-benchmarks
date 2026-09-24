@@ -9,6 +9,28 @@ them, so you can test your own machine and add a data point.
 
 ## Results so far
 
+### September 24, 2026: 3B to 33B on an RTX 3060 12 GB
+
+| Model | Memory | RTX 3060 | CPU only |
+|---|---|---|---|
+| Llama 3.2 3B (Q4_K_M) | 3.3 GB | 77.9 tok/s (all on GPU) | 12.8 tok/s |
+| Qwen2.5 7B Instruct (Q4_K_M) | 5.6 GB | 49.0 tok/s (all on GPU) | 6.4 tok/s |
+| Mistral 7B (Q4_K_M) | 5.8 GB | 57.8 tok/s (all on GPU) | not run |
+| Llama 3 8B Instruct (Q4_0) | 5.8 GB | 50.3 tok/s (all on GPU) | not run |
+| Hermes 3 8B (Q4_0) | 5.8 GB | 49.9 tok/s (all on GPU) | 5.7 tok/s |
+| Qwen2.5 Coder 14B (Q4_K_M) | 10.4 GB | 28.5 tok/s (all on GPU) | 3.5 tok/s |
+| gpt-oss 20B (MXFP4) | 14.9 GB | 6.5 tok/s (27% CPU / 73% GPU) | 2.4 tok/s |
+| DeepSeek Coder 33B (Q4_0) | 21.1 GB | 2.7 tok/s (47% CPU / 53% GPU) | 1.5 tok/s |
+
+Models up to 14B fit on the card; larger ones split between GPU and system RAM, which is much slower. About 1.2 GB of
+the card was already in use by the desktop and a Stable Diffusion web UI. Written up in
+[What can an RTX 3060 12GB run?](https://arynwood.com/rtx-3060-12gb-local-llm/) and
+[How much VRAM does a local LLM need?](https://arynwood.com/llm-vram-requirements/)
+
+Memory for Qwen2.5 7B at different context lengths (`num_ctx`), all 100% on the GPU: 2,048 tokens 5.4 GB, 4,096 tokens 5.6 GB, 8,192 tokens 6.0 GB, 16,384 tokens 7.0 GB, 32,768 tokens 8.9 GB.
+
+### September 22, 2026: CPU only vs RTX 3060
+
 | Machine | Model | CPU only | RTX 3060 | Speed-up | First answer, cold (CPU / GPU) |
 |---|---|---|---|---|---|
 | Xeon E5-2665 (2012), no AVX2 | TinyLlama 1.1B (Q4_0) | 27.1 tok/s | 197.4 tok/s | 7.3× | 10.2 s / 2.7 s |
@@ -34,6 +56,8 @@ python3 bench.py llama3.2:3b --csv my-results.csv
 No NVIDIA GPU? Add `--modes cpu`. Testing several models:
 `python3 bench.py tinyllama llama3.2:3b qwen2.5:7b-instruct --csv my-results.csv`
 
+To see how much memory longer contexts need: `python3 context_length.py qwen2.5:7b-instruct`
+
 The script prints your hardware and one line per model and mode:
 
 ```
@@ -57,7 +81,8 @@ and paste your CSV. Submissions are added to `results/` with the credit you choo
 - One cold run with the model unloaded, then warm runs. The warm number is the median eval rate
   (`eval_count / eval_duration`); the cold number is the total time for the first answer, including load.
 - CPU-only runs set `num_gpu` to 0, which puts no model layers on the GPU. The model is unloaded between modes.
-- Memory is what Ollama reports in `/api/ps`: RAM in CPU mode, VRAM in GPU mode.
+- Memory is the total Ollama reports in `/api/ps` for the loaded model. `gpu_share_pct` is how much of it sat on the
+  GPU (100 means it fit; less means it was split with system RAM). Files before September 24 don't have this column.
 
 Longer prompts and longer conversations are slower, because the model processes everything already in
 the context. These numbers are for short answers to a short prompt.

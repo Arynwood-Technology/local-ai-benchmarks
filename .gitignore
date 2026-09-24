@@ -1,0 +1,4 @@
+__pycache__/
+aeo_*
+context_sweep*
+*.log
