@@ -1,0 +1,2 @@
+date,cpu,ram_gb,gpu,os,ollama_version,model,quantization,mode,warm_tokens_per_s,cold_seconds,memory_gb,gpu_share_pct,warm_runs,num_predict
+2026-09-29,Intel(R) Core(TM) i3-5005U CPU @ 2.00GHz,6,Intel(R) HD Graphics 5500 (integrated; CPU-only run),Windows-10-10.0.19045-SP0,0.11.4,tinyllama,Q4_0,cpu,9.4,229.8,0.7,0,3,200

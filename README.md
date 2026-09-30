@@ -43,6 +43,10 @@ word, and most people read about 5 tokens per second. Raw data is in [`results/`
 One machine is one data point. A modern CPU with AVX2 or AVX-512 and faster memory will beat these CPU
 numbers, often by a wide margin. That's why more machines are wanted.
 
+## One-machine operating-system comparison
+
+[HP Notebook i3-5005U: Windows 10 vs Linux Mint Cinnamon](machine-tests/hp-notebook-i3-5005u/) — a paired test on the same 6 GB laptop, using the same Ollama version and model.
+
 ## Test your own machine
 
 You need Python 3.8+ and a running Ollama. The script has no other dependencies.

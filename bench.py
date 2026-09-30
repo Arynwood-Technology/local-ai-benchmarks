@@ -75,18 +75,69 @@ def read_first(path, pattern):
 
 
 def hardware():
-    cpu = read_first('/proc/cpuinfo', r'model name\s*:\s*(.*)') or platform.processor() or platform.machine()
-    mem_kb = read_first('/proc/meminfo', r'MemTotal:\s*(\d+)')
-    ram = round(int(mem_kb) / 1024 / 1024) if mem_kb else ''
+    cpu = read_first('/proc/cpuinfo', r'model name\s*:\s*(.*)')
+    ram = ''
     gpu = ''
+    if sys.platform == 'win32':
+        # Use Windows' built-in registry and memory API so the script works without
+        # WMI Python packages or a shell-specific dependency.
+        try:
+            import winreg
+            with winreg.OpenKey(winreg.HKEY_LOCAL_MACHINE,
+                                r'HARDWARE\DESCRIPTION\System\CentralProcessor\0') as key:
+                cpu = winreg.QueryValueEx(key, 'ProcessorNameString')[0].strip()
+        except (ImportError, OSError):
+            pass
+        try:
+            import winreg
+            graphics_path = r'SYSTEM\CurrentControlSet\Control\Class\{4d36e968-e325-11ce-bfc1-08002be10318}'
+            names = []
+            with winreg.OpenKey(winreg.HKEY_LOCAL_MACHINE, graphics_path) as key:
+                for index in range(16):
+                    try:
+                        with winreg.OpenKey(key, f'{index:04}') as adapter:
+                            name = winreg.QueryValueEx(adapter, 'DriverDesc')[0].strip()
+                            if name and name not in names:
+                                names.append(name)
+                    except OSError:
+                        continue
+            gpu = '; '.join(names)
+        except (ImportError, OSError):
+            pass
+        try:
+            import ctypes
+            class MemoryStatus(ctypes.Structure):
+                _fields_ = [('length', ctypes.c_ulong), ('memory_load', ctypes.c_ulong),
+                            ('total_phys', ctypes.c_ulonglong), ('avail_phys', ctypes.c_ulonglong),
+                            ('total_page_file', ctypes.c_ulonglong), ('avail_page_file', ctypes.c_ulonglong),
+                            ('total_virtual', ctypes.c_ulonglong), ('avail_virtual', ctypes.c_ulonglong),
+                            ('avail_extended_virtual', ctypes.c_ulonglong)]
+            status = MemoryStatus()
+            status.length = ctypes.sizeof(status)
+            if ctypes.windll.kernel32.GlobalMemoryStatusEx(ctypes.byref(status)):
+                ram = round(status.total_phys / 1024**3)
+        except (AttributeError, OSError):
+            pass
+    else:
+        mem_kb = read_first('/proc/meminfo', r'MemTotal:\s*(\d+)')
+        ram = round(int(mem_kb) / 1024 / 1024) if mem_kb else ''
+        if shutil.which('lspci'):
+            try:
+                out = subprocess.run(['lspci'], capture_output=True, text=True, timeout=10).stdout.splitlines()
+                gpu = '; '.join(line.split(': ', 1)[-1] for line in out
+                                if re.search(r'VGA compatible controller|3D controller|Display controller', line))
+            except (OSError, subprocess.SubprocessError):
+                pass
     if shutil.which('nvidia-smi'):
         try:
             out = subprocess.run(['nvidia-smi', '--query-gpu=name,memory.total', '--format=csv,noheader'],
                                  capture_output=True, text=True, timeout=10).stdout.strip().splitlines()
-            gpu = out[0] if out else ''
+            nvidia_gpu = out[0] if out else ''
+            gpu = '; '.join(value for value in (gpu, nvidia_gpu) if value)
         except (OSError, subprocess.SubprocessError):
             pass
-    os_name = read_first('/etc/os-release', r'PRETTY_NAME="?([^"\n]*)') or f'{platform.system()} {platform.release()}'
+    os_name = read_first('/etc/os-release', r'PRETTY_NAME="?([^"\n]*)') or platform.platform()
+    cpu = cpu or platform.processor() or platform.machine()
     return {'cpu': re.sub(r'\s+', ' ', cpu), 'ram_gb': ram, 'gpu': gpu, 'os': os_name}
 
 
