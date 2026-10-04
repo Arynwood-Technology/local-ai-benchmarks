@@ -27,7 +27,12 @@ live evals. Full write-up: [TOOL-CALLING.md](TOOL-CALLING.md).
 | Granite 4 3B | 21 | 3/6 | 26 | 62.2 tok/s | 3.9 GB |
 
 gpt-oss 20B passed all 25 cases it finished, but needs about 16 GB at this context length and was
-stopped. Gemma 4 and Nemotron 3 Nano need a newer Ollama than 0.11.4 and are the next round.
+stopped.
+
+**Round 2, Ollama 0.35.1:** Gemma 4 12B 36 / 6 of 6 / 35 (about 9 GB, but thinking adds about 4 s
+to every routing step); Hermes 3 8B 36 / 6 of 6 / 32; Granite 3.3 8B 36 / 6 of 6 / 32; Nemotron 3
+Nano 4B 33 / 3 of 6 / 32; Qwen2.5 Coder 14B 24 / 0 of 6 / 33. The same models ran about 40 to 65
+percent faster than on 0.11.4. Details in [TOOL-CALLING.md](TOOL-CALLING.md#round-2-ollama-0351-gemma-4-and-nemotron-3-nano).
 
 ### September 24, 2026: 3B to 33B on an RTX 3060 12 GB
 

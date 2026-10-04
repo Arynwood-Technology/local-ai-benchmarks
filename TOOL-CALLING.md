@@ -1,5 +1,8 @@
 # Tool calling on an RTX 3060 12 GB (October 4, 2026)
 
+Two rounds: Ollama 0.11.4 (eight models), then Ollama 0.35.1 (Gemma 4, Nemotron 3 Nano and
+three models run again).
+
 Which local model should make the tool calls in a personal AI agent that runs on one 12 GB
 graphics card? This round compares models from US companies that Ollama lists with tool
 support against Qwen2.5 Coder 14B, the model [Arynwood MCP](https://github.com/Arynwood-Technology/ArynwoodMCP)
@@ -81,8 +84,46 @@ instructions where Qwen didn't, it's faster, and it leaves room on the card for 
 image generation. Its weak spots are formatting and pacing in conversation, which prompt work can
 address. It was already the model behind Arynwood's Kona persona. It dates from August 2024.
 
-**Not tested yet:** Google's Gemma 4 (12B fits the card) and NVIDIA's Nemotron 3 Nano 4B. Both
-need a newer Ollama than 0.11.4. They're the next round.
+Gemma 4 and Nemotron 3 Nano needed a newer Ollama; see round 2 below.
+
+## Round 2: Ollama 0.35.1, Gemma 4 and Nemotron 3 Nano
+
+Gemma 4 and Nemotron 3 Nano need a newer Ollama than 0.11.4, so Ollama was upgraded to 0.35.1
+and the leading models were run again on the same machine and settings. Arynwood's evals ran
+after a short warm-up for each model: this Ollama prepares GPU work the first time it sees a new
+prompt shape after loading a model (about 10 to 90 seconds), and a cold model would otherwise
+fail the evals' 15-second routing limit for reasons that have nothing to do with tool calling.
+
+| Model | Maker | Tool test (39) | Planted instructions refused | Arynwood evals (36) | Routing call (median) | Speed | Memory |
+|---|---|---|---|---|---|---|---|
+| Gemma 4 12B | Google | 36 | 6/6 | **35** | 4.1 s | 75.1 tok/s | about 9 GB, all on GPU |
+| **Hermes 3 8B** | Nous Research, on Meta Llama 3.1 | 36 | 6/6 | 32 | **0.1 s** | 68.6 tok/s | 5.7 GB, all on GPU |
+| Granite 3.3 8B | IBM | 36 | 6/6 | 32 | 0.1 s | 59.5 tok/s | 6.5 GB, all on GPU |
+| Nemotron 3 Nano 4B | NVIDIA | 33 | 3/6 | 32 | 1.1 s | 94.5 tok/s | 3.0 GB, all on GPU |
+| Qwen2.5 Coder 14B (baseline) | Alibaba | 24 | 0/6 | 33 | 0.2 s | 28.5 tok/s | 10.8 GB, 94% on GPU |
+
+Memory is Ollama's report, except Gemma 4's, which Ollama misreported as 1.3 GB; that figure is
+from `nvidia-smi` with the model loaded. "Routing call" is the median time of Arynwood's
+gate and routing evals: the classification that runs before every reply.
+
+- **Gemma 4 12B was the most accurate through Arynwood's prompts**, missing only one summary
+  test, and it refused every planted instruction. It gets there by thinking before it answers,
+  which is on by default. That made the routing call that runs before every reply take a
+  median 4.1 seconds instead of 0.1, and a web-search decision 12.3 seconds instead of 1.6. Twice
+  the thinking used up the reply and the answer came back empty: once for the haiku, and once in a
+  separate routing check. With thinking switched off it answered in 0.2 seconds but routed a
+  Kdenlive question to no tool and stopped following a one-word answer format.
+- **Ollama 0.35.1 generated about 40 to 65 percent faster** than 0.11.4 for the models run on both:
+  Hermes 3 went from 44 to 69 tokens per second, Granite 3.3 from 43 to 60 and Qwen2.5 Coder from 17 to 29.
+- **Hermes 3 8B kept its tool test score** (36 of 39) but changed where it missed: on this
+  version it chose every needed tool and searched the web for one definition it didn't need.
+- **Nemotron 3 Nano 4B was fast and good at routing,** but followed a planted instruction in half
+  the injection cases and returned an empty haiku.
+
+**Our choice stays Hermes 3 8B** for Arynwood MCP on a 12 GB card: it makes the same tool
+decisions that matter in a reply, answers the routing step in a tenth of a second, and leaves
+room for image generation. Gemma 4 12B is the better choice when accuracy matters more than
+speed and the card has room for it.
 
 ## Limits
 
@@ -103,10 +144,10 @@ python3 tool_calling.py hermes3:8b --runs 3 --csv my-tool-results.csv
 
 ### Which local model is best for tool calling on a 12 GB GPU?
 
-In this test, among models from US companies that fit an RTX 3060 12 GB, Hermes 3 8B: 36 of 39
-tool cases right, and all 20 of Arynwood MCP's tool decisions, at 44 tokens per second in 6.7 GB.
-Qwen2.5 Coder 14B made the same tool decisions but called tools it didn't need and followed
-planted instructions.
+In these tests, among models from US companies that fit an RTX 3060 12 GB: Hermes 3 8B for speed,
+Gemma 4 12B for accuracy. Hermes 3 got 36 of 39 tool cases right and made Arynwood MCP's tool
+decisions in a tenth of a second, in under 6 GB. Gemma 4 scored highest on Arynwood's evals (35
+of 36) but thinks before it answers, adding seconds to every step, and needs about 9 GB.
 
 ### Can a local model ignore instructions hidden in a web page or file name?
 
