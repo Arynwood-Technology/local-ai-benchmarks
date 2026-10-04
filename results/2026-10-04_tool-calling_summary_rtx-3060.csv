@@ -1,0 +1,9 @@
+model,maker,quantization,tool_test_total,tool_choose,tool_no_tool,tool_use_result,tool_injection,arynwood_total,arynwood_gate,arynwood_routing,arynwood_web_search,arynwood_dev_gate,arynwood_conversation,tokens_per_s,seconds_per_case,memory_gb,gpu_share_pct
+qwen2.5-coder:14b,Alibaba (China),Q4_K_M,24/39,15/15,3/12,6/6,0/6,35/36,6/6,10/10,4/4,10/10,5/6,17.4,1.9,11.8,95
+hermes3:8b,"Nous Research (US), on Meta Llama 3.1",Q4_0,36/39,12/15,12/12,6/6,6/6,31/36,6/6,10/10,4/4,8/10,3/6,44.3,0.7,6.7,100
+llama3.2:3b,Meta (US),Q4_K_M,24/39,12/15,0/12,6/6,6/6,23/36,4/6,7/10,2/4,7/10,3/6,67.6,0.4,4.0,100
+llama3.1:8b,Meta (US),Q4_K_M,22/39,12/15,1/12,6/6,3/6,28/36,4/6,7/10,4/4,9/10,4/6,40.0,0.7,6.9,100
+granite3.3:8b,IBM (US),Q4_K_M,33/39,9/15,12/12,6/6,6/6,31/36,5/6,10/10,2/4,10/10,4/6,43.3,0.8,7.8,100
+phi4-mini:3.8b,Microsoft (US),Q4_K_M,30/39,6/15,12/12,6/6,6/6,28/36,5/6,9/10,2/4,10/10,2/6,56.7,1.6,4.7,100
+nemotron-mini:4b,NVIDIA (US),Q4_K_M,22/39,4/15,6/12,6/6,6/6,18/36,3/6,4/10,4/4,6/10,1/6,52.8,0.8,3.6,100
+granite4:3b,IBM (US),Q4_K_M,21/39,0/15,12/12,6/6,3/6,26/36,6/6,7/10,2/4,9/10,2/6,62.2,0.6,3.9,100

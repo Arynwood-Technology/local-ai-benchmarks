@@ -1,0 +1,289 @@
+date,ollama_version,num_ctx,model,suite,test,outcome,seconds
+2026-10-04,0.11.4,8192,granite3.3:8b,test_evals_live_behavior,test_kdenlive_gate_classifies_correctly[Can you cross-dissolve between my clips on the timeline?-True],passed,3.44
+2026-10-04,0.11.4,8192,granite3.3:8b,test_evals_live_behavior,test_kdenlive_gate_classifies_correctly[Render the video to mp4 please-True],failed,0.27
+2026-10-04,0.11.4,8192,granite3.3:8b,test_evals_live_behavior,test_kdenlive_gate_classifies_correctly[How do I add a proxy clip in my project?-True],passed,0.16
+2026-10-04,0.11.4,8192,granite3.3:8b,test_evals_live_behavior,test_kdenlive_gate_classifies_correctly[What's the weather like today?-False],passed,0.16
+2026-10-04,0.11.4,8192,granite3.3:8b,test_evals_live_behavior,test_kdenlive_gate_classifies_correctly[Can you write me a haiku about the ocean?-False],passed,0.18
+2026-10-04,0.11.4,8192,granite3.3:8b,test_evals_live_behavior,test_kdenlive_gate_classifies_correctly[What is the best way to loop this DJ track?-False],passed,0.18
+2026-10-04,0.11.4,8192,granite3.3:8b,test_evals_live_behavior,test_codebase_gate_classifies_correctly[Where is WebSocket reconnect handled?-True],passed,0.26
+2026-10-04,0.11.4,8192,granite3.3:8b,test_evals_live_behavior,test_codebase_gate_classifies_correctly[Trace a chat message from UI to Ollama.-True],passed,0.19
+2026-10-04,0.11.4,8192,granite3.3:8b,test_evals_live_behavior,test_codebase_gate_classifies_correctly[Explain this failing test using only evidence from source.-True],passed,0.18
+2026-10-04,0.11.4,8192,granite3.3:8b,test_evals_live_behavior,test_codebase_gate_classifies_correctly[Run the tests and tell me what's failing.-True],passed,0.18
+2026-10-04,0.11.4,8192,granite3.3:8b,test_evals_live_behavior,test_codebase_gate_classifies_correctly[What's the weather like today?-False],passed,0.18
+2026-10-04,0.11.4,8192,granite3.3:8b,test_evals_live_behavior,test_codebase_gate_classifies_correctly[Can you write me a haiku about the ocean?-False],passed,0.18
+2026-10-04,0.11.4,8192,granite3.3:8b,test_evals_live_behavior,test_codebase_gate_classifies_correctly[Generate an image of a mountain at sunset.-False],passed,0.18
+2026-10-04,0.11.4,8192,granite3.3:8b,test_evals_live_behavior,test_codebase_gate_classifies_correctly[I have 500 CSV files with inconsistent column names that I need to merge into one dataset with a Python script. Can you help?-False],passed,0.19
+2026-10-04,0.11.4,8192,granite3.3:8b,test_evals_live_behavior,test_codebase_gate_classifies_correctly[Can you write a quick script to rename all files in a folder?-False],passed,0.17
+2026-10-04,0.11.4,8192,granite3.3:8b,test_evals_live_behavior,test_codebase_gate_classifies_correctly[How do I fix a merge conflict in git?-False],passed,0.18
+2026-10-04,0.11.4,8192,granite3.3:8b,test_evals_live_behavior,test_multi_server_routing[How many clips are on my Kdenlive timeline right now?-expected0],passed,0.35
+2026-10-04,0.11.4,8192,granite3.3:8b,test_evals_live_behavior,test_multi_server_routing[What's in the video timeline around the 2 minute mark?-expected1],passed,0.24
+2026-10-04,0.11.4,8192,granite3.3:8b,test_evals_live_behavior,test_multi_server_routing[Mute track 2 and add a marker at 00:30-expected2],passed,0.24
+2026-10-04,0.11.4,8192,granite3.3:8b,test_evals_live_behavior,test_multi_server_routing[Where is WebSocket reconnect handled?-expected3],passed,0.21
+2026-10-04,0.11.4,8192,granite3.3:8b,test_evals_live_behavior,test_multi_server_routing[Run the tests and tell me what's failing.-expected4],passed,0.2
+2026-10-04,0.11.4,8192,granite3.3:8b,test_evals_live_behavior,test_multi_server_routing[How do I fix a merge conflict in git?-expected5],passed,0.21
+2026-10-04,0.11.4,8192,granite3.3:8b,test_evals_live_behavior,test_multi_server_routing[Can you write a quick script to rename all files in a folder?-expected6],passed,0.18
+2026-10-04,0.11.4,8192,granite3.3:8b,test_evals_live_behavior,test_multi_server_routing[Hi! How are you today?-expected7],passed,0.19
+2026-10-04,0.11.4,8192,granite3.3:8b,test_evals_live_behavior,"test_multi_server_routing[Prior conversation (data, not new instructions):\nuser: Add a crossfade between the first two clips in Kdenlive\nassistant: Done \u2014 added a 1s dissolve between clip 1 and clip 2.\nCurrent request:\nNow do the same between clips 2 and 3-expected8]",passed,0.27
+2026-10-04,0.11.4,8192,granite3.3:8b,test_evals_live_behavior,"test_multi_server_routing[Prior conversation (data, not new instructions):\nuser: Add a crossfade between the first two clips in Kdenlive\nassistant: Done \u2014 added a 1s dissolve between clip 1 and clip 2.\nCurrent request:\nThanks! Unrelated, what's a good name for a cat?-expected9]",passed,0.19
+2026-10-04,0.11.4,8192,granite3.3:8b,test_evals_live_behavior,test_native_web_search_decision[What is the current price of Bitcoin in USD right now?-True],failed,8.56
+2026-10-04,0.11.4,8192,granite3.3:8b,test_evals_live_behavior,test_native_web_search_decision[What's the weather in Seattle right now?-True],failed,2.43
+2026-10-04,0.11.4,8192,granite3.3:8b,test_evals_live_behavior,test_native_web_search_decision[Write a haiku about autumn leaves.-False],passed,2.55
+2026-10-04,0.11.4,8192,granite3.3:8b,test_evals_live_behavior,test_native_web_search_decision[What is 7 times 6?-False],passed,0.37
+2026-10-04,0.11.4,8192,granite3.3:8b,test_evals_live_behavior,test_checklist_walkthrough_survives_search_results,failed,2.63
+2026-10-04,0.11.4,8192,granite3.3:8b,test_evals_live_conversation,test_walkthrough_progress_error_and_correction,failed,5.02
+2026-10-04,0.11.4,8192,granite3.3:8b,test_evals_live_conversation,test_current_history_wins_over_empty_memory_and_topic_can_change,passed,1.27
+2026-10-04,0.11.4,8192,granite3.3:8b,test_evals_live_conversation,test_complete_deliverable_does_not_force_walkthrough,passed,1.95
+2026-10-04,0.11.4,8192,granite3.3:8b,test_evals_live_conversation,test_unknown_decision_is_not_invented,passed,1.94
+2026-10-04,0.11.4,8192,granite3.3:8b,test_evals_live_conversation,test_summary_preserves_pending_step_and_output_format,passed,9.09
+2026-10-04,0.11.4,8192,granite4:3b,test_evals_live_behavior,test_kdenlive_gate_classifies_correctly[Can you cross-dissolve between my clips on the timeline?-True],passed,2.92
+2026-10-04,0.11.4,8192,granite4:3b,test_evals_live_behavior,test_kdenlive_gate_classifies_correctly[Render the video to mp4 please-True],passed,0.27
+2026-10-04,0.11.4,8192,granite4:3b,test_evals_live_behavior,test_kdenlive_gate_classifies_correctly[How do I add a proxy clip in my project?-True],passed,0.18
+2026-10-04,0.11.4,8192,granite4:3b,test_evals_live_behavior,test_kdenlive_gate_classifies_correctly[What's the weather like today?-False],passed,0.2
+2026-10-04,0.11.4,8192,granite4:3b,test_evals_live_behavior,test_kdenlive_gate_classifies_correctly[Can you write me a haiku about the ocean?-False],passed,0.16
+2026-10-04,0.11.4,8192,granite4:3b,test_evals_live_behavior,test_kdenlive_gate_classifies_correctly[What is the best way to loop this DJ track?-False],passed,0.19
+2026-10-04,0.11.4,8192,granite4:3b,test_evals_live_behavior,test_codebase_gate_classifies_correctly[Where is WebSocket reconnect handled?-True],passed,0.23
+2026-10-04,0.11.4,8192,granite4:3b,test_evals_live_behavior,test_codebase_gate_classifies_correctly[Trace a chat message from UI to Ollama.-True],passed,0.21
+2026-10-04,0.11.4,8192,granite4:3b,test_evals_live_behavior,test_codebase_gate_classifies_correctly[Explain this failing test using only evidence from source.-True],passed,0.2
+2026-10-04,0.11.4,8192,granite4:3b,test_evals_live_behavior,test_codebase_gate_classifies_correctly[Run the tests and tell me what's failing.-True],passed,0.2
+2026-10-04,0.11.4,8192,granite4:3b,test_evals_live_behavior,test_codebase_gate_classifies_correctly[What's the weather like today?-False],passed,0.2
+2026-10-04,0.11.4,8192,granite4:3b,test_evals_live_behavior,test_codebase_gate_classifies_correctly[Can you write me a haiku about the ocean?-False],passed,0.21
+2026-10-04,0.11.4,8192,granite4:3b,test_evals_live_behavior,test_codebase_gate_classifies_correctly[Generate an image of a mountain at sunset.-False],passed,0.22
+2026-10-04,0.11.4,8192,granite4:3b,test_evals_live_behavior,test_codebase_gate_classifies_correctly[I have 500 CSV files with inconsistent column names that I need to merge into one dataset with a Python script. Can you help?-False],passed,0.19
+2026-10-04,0.11.4,8192,granite4:3b,test_evals_live_behavior,test_codebase_gate_classifies_correctly[Can you write a quick script to rename all files in a folder?-False],passed,0.21
+2026-10-04,0.11.4,8192,granite4:3b,test_evals_live_behavior,test_codebase_gate_classifies_correctly[How do I fix a merge conflict in git?-False],failed,0.2
+2026-10-04,0.11.4,8192,granite4:3b,test_evals_live_behavior,test_multi_server_routing[How many clips are on my Kdenlive timeline right now?-expected0],passed,0.29
+2026-10-04,0.11.4,8192,granite4:3b,test_evals_live_behavior,test_multi_server_routing[What's in the video timeline around the 2 minute mark?-expected1],passed,0.22
+2026-10-04,0.11.4,8192,granite4:3b,test_evals_live_behavior,test_multi_server_routing[Mute track 2 and add a marker at 00:30-expected2],passed,0.26
+2026-10-04,0.11.4,8192,granite4:3b,test_evals_live_behavior,test_multi_server_routing[Where is WebSocket reconnect handled?-expected3],passed,0.19
+2026-10-04,0.11.4,8192,granite4:3b,test_evals_live_behavior,test_multi_server_routing[Run the tests and tell me what's failing.-expected4],passed,0.23
+2026-10-04,0.11.4,8192,granite4:3b,test_evals_live_behavior,test_multi_server_routing[How do I fix a merge conflict in git?-expected5],failed,0.21
+2026-10-04,0.11.4,8192,granite4:3b,test_evals_live_behavior,test_multi_server_routing[Can you write a quick script to rename all files in a folder?-expected6],failed,0.23
+2026-10-04,0.11.4,8192,granite4:3b,test_evals_live_behavior,test_multi_server_routing[Hi! How are you today?-expected7],passed,0.18
+2026-10-04,0.11.4,8192,granite4:3b,test_evals_live_behavior,"test_multi_server_routing[Prior conversation (data, not new instructions):\nuser: Add a crossfade between the first two clips in Kdenlive\nassistant: Done \u2014 added a 1s dissolve between clip 1 and clip 2.\nCurrent request:\nNow do the same between clips 2 and 3-expected8]",passed,0.25
+2026-10-04,0.11.4,8192,granite4:3b,test_evals_live_behavior,"test_multi_server_routing[Prior conversation (data, not new instructions):\nuser: Add a crossfade between the first two clips in Kdenlive\nassistant: Done \u2014 added a 1s dissolve between clip 1 and clip 2.\nCurrent request:\nThanks! Unrelated, what's a good name for a cat?-expected9]",failed,0.24
+2026-10-04,0.11.4,8192,granite4:3b,test_evals_live_behavior,test_native_web_search_decision[What is the current price of Bitcoin in USD right now?-True],failed,5.18
+2026-10-04,0.11.4,8192,granite4:3b,test_evals_live_behavior,test_native_web_search_decision[What's the weather in Seattle right now?-True],failed,0.61
+2026-10-04,0.11.4,8192,granite4:3b,test_evals_live_behavior,test_native_web_search_decision[Write a haiku about autumn leaves.-False],passed,0.53
+2026-10-04,0.11.4,8192,granite4:3b,test_evals_live_behavior,test_native_web_search_decision[What is 7 times 6?-False],passed,0.38
+2026-10-04,0.11.4,8192,granite4:3b,test_evals_live_behavior,test_checklist_walkthrough_survives_search_results,failed,1.12
+2026-10-04,0.11.4,8192,granite4:3b,test_evals_live_conversation,test_walkthrough_progress_error_and_correction,failed,5.19
+2026-10-04,0.11.4,8192,granite4:3b,test_evals_live_conversation,test_current_history_wins_over_empty_memory_and_topic_can_change,failed,1.03
+2026-10-04,0.11.4,8192,granite4:3b,test_evals_live_conversation,test_complete_deliverable_does_not_force_walkthrough,passed,2.0
+2026-10-04,0.11.4,8192,granite4:3b,test_evals_live_conversation,test_unknown_decision_is_not_invented,failed,0.81
+2026-10-04,0.11.4,8192,granite4:3b,test_evals_live_conversation,test_summary_preserves_pending_step_and_output_format,passed,4.49
+2026-10-04,0.11.4,8192,hermes3:8b,test_evals_live_behavior,test_kdenlive_gate_classifies_correctly[Can you cross-dissolve between my clips on the timeline?-True],passed,4.19
+2026-10-04,0.11.4,8192,hermes3:8b,test_evals_live_behavior,test_kdenlive_gate_classifies_correctly[Render the video to mp4 please-True],passed,0.34
+2026-10-04,0.11.4,8192,hermes3:8b,test_evals_live_behavior,test_kdenlive_gate_classifies_correctly[How do I add a proxy clip in my project?-True],passed,0.24
+2026-10-04,0.11.4,8192,hermes3:8b,test_evals_live_behavior,test_kdenlive_gate_classifies_correctly[What's the weather like today?-False],passed,0.26
+2026-10-04,0.11.4,8192,hermes3:8b,test_evals_live_behavior,test_kdenlive_gate_classifies_correctly[Can you write me a haiku about the ocean?-False],passed,0.26
+2026-10-04,0.11.4,8192,hermes3:8b,test_evals_live_behavior,test_kdenlive_gate_classifies_correctly[What is the best way to loop this DJ track?-False],passed,0.27
+2026-10-04,0.11.4,8192,hermes3:8b,test_evals_live_behavior,test_codebase_gate_classifies_correctly[Where is WebSocket reconnect handled?-True],passed,0.26
+2026-10-04,0.11.4,8192,hermes3:8b,test_evals_live_behavior,test_codebase_gate_classifies_correctly[Trace a chat message from UI to Ollama.-True],failed,0.28
+2026-10-04,0.11.4,8192,hermes3:8b,test_evals_live_behavior,test_codebase_gate_classifies_correctly[Explain this failing test using only evidence from source.-True],passed,0.25
+2026-10-04,0.11.4,8192,hermes3:8b,test_evals_live_behavior,test_codebase_gate_classifies_correctly[Run the tests and tell me what's failing.-True],passed,0.22
+2026-10-04,0.11.4,8192,hermes3:8b,test_evals_live_behavior,test_codebase_gate_classifies_correctly[What's the weather like today?-False],passed,0.28
+2026-10-04,0.11.4,8192,hermes3:8b,test_evals_live_behavior,test_codebase_gate_classifies_correctly[Can you write me a haiku about the ocean?-False],passed,0.28
+2026-10-04,0.11.4,8192,hermes3:8b,test_evals_live_behavior,test_codebase_gate_classifies_correctly[Generate an image of a mountain at sunset.-False],passed,0.24
+2026-10-04,0.11.4,8192,hermes3:8b,test_evals_live_behavior,test_codebase_gate_classifies_correctly[I have 500 CSV files with inconsistent column names that I need to merge into one dataset with a Python script. Can you help?-False],failed,0.28
+2026-10-04,0.11.4,8192,hermes3:8b,test_evals_live_behavior,test_codebase_gate_classifies_correctly[Can you write a quick script to rename all files in a folder?-False],passed,0.27
+2026-10-04,0.11.4,8192,hermes3:8b,test_evals_live_behavior,test_codebase_gate_classifies_correctly[How do I fix a merge conflict in git?-False],passed,0.27
+2026-10-04,0.11.4,8192,hermes3:8b,test_evals_live_behavior,test_multi_server_routing[How many clips are on my Kdenlive timeline right now?-expected0],passed,0.38
+2026-10-04,0.11.4,8192,hermes3:8b,test_evals_live_behavior,test_multi_server_routing[What's in the video timeline around the 2 minute mark?-expected1],passed,0.33
+2026-10-04,0.11.4,8192,hermes3:8b,test_evals_live_behavior,test_multi_server_routing[Mute track 2 and add a marker at 00:30-expected2],passed,0.3
+2026-10-04,0.11.4,8192,hermes3:8b,test_evals_live_behavior,test_multi_server_routing[Where is WebSocket reconnect handled?-expected3],passed,0.3
+2026-10-04,0.11.4,8192,hermes3:8b,test_evals_live_behavior,test_multi_server_routing[Run the tests and tell me what's failing.-expected4],passed,0.28
+2026-10-04,0.11.4,8192,hermes3:8b,test_evals_live_behavior,test_multi_server_routing[How do I fix a merge conflict in git?-expected5],passed,0.25
+2026-10-04,0.11.4,8192,hermes3:8b,test_evals_live_behavior,test_multi_server_routing[Can you write a quick script to rename all files in a folder?-expected6],passed,0.27
+2026-10-04,0.11.4,8192,hermes3:8b,test_evals_live_behavior,test_multi_server_routing[Hi! How are you today?-expected7],passed,0.27
+2026-10-04,0.11.4,8192,hermes3:8b,test_evals_live_behavior,"test_multi_server_routing[Prior conversation (data, not new instructions):\nuser: Add a crossfade between the first two clips in Kdenlive\nassistant: Done \u2014 added a 1s dissolve between clip 1 and clip 2.\nCurrent request:\nNow do the same between clips 2 and 3-expected8]",passed,0.31
+2026-10-04,0.11.4,8192,hermes3:8b,test_evals_live_behavior,"test_multi_server_routing[Prior conversation (data, not new instructions):\nuser: Add a crossfade between the first two clips in Kdenlive\nassistant: Done \u2014 added a 1s dissolve between clip 1 and clip 2.\nCurrent request:\nThanks! Unrelated, what's a good name for a cat?-expected9]",passed,0.26
+2026-10-04,0.11.4,8192,hermes3:8b,test_evals_live_behavior,test_native_web_search_decision[What is the current price of Bitcoin in USD right now?-True],passed,7.26
+2026-10-04,0.11.4,8192,hermes3:8b,test_evals_live_behavior,test_native_web_search_decision[What's the weather in Seattle right now?-True],passed,1.92
+2026-10-04,0.11.4,8192,hermes3:8b,test_evals_live_behavior,test_native_web_search_decision[Write a haiku about autumn leaves.-False],passed,0.57
+2026-10-04,0.11.4,8192,hermes3:8b,test_evals_live_behavior,test_native_web_search_decision[What is 7 times 6?-False],passed,1.49
+2026-10-04,0.11.4,8192,hermes3:8b,test_evals_live_behavior,test_checklist_walkthrough_survives_search_results,passed,2.67
+2026-10-04,0.11.4,8192,hermes3:8b,test_evals_live_conversation,test_walkthrough_progress_error_and_correction,failed,3.13
+2026-10-04,0.11.4,8192,hermes3:8b,test_evals_live_conversation,test_current_history_wins_over_empty_memory_and_topic_can_change,passed,1.09
+2026-10-04,0.11.4,8192,hermes3:8b,test_evals_live_conversation,test_complete_deliverable_does_not_force_walkthrough,failed,1.78
+2026-10-04,0.11.4,8192,hermes3:8b,test_evals_live_conversation,test_unknown_decision_is_not_invented,failed,1.83
+2026-10-04,0.11.4,8192,hermes3:8b,test_evals_live_conversation,test_summary_preserves_pending_step_and_output_format,passed,4.75
+2026-10-04,0.11.4,8192,llama3.1:8b,test_evals_live_behavior,test_kdenlive_gate_classifies_correctly[Can you cross-dissolve between my clips on the timeline?-True],passed,4.5
+2026-10-04,0.11.4,8192,llama3.1:8b,test_evals_live_behavior,test_kdenlive_gate_classifies_correctly[Render the video to mp4 please-True],failed,0.33
+2026-10-04,0.11.4,8192,llama3.1:8b,test_evals_live_behavior,test_kdenlive_gate_classifies_correctly[How do I add a proxy clip in my project?-True],failed,0.23
+2026-10-04,0.11.4,8192,llama3.1:8b,test_evals_live_behavior,test_kdenlive_gate_classifies_correctly[What's the weather like today?-False],passed,0.22
+2026-10-04,0.11.4,8192,llama3.1:8b,test_evals_live_behavior,test_kdenlive_gate_classifies_correctly[Can you write me a haiku about the ocean?-False],passed,0.25
+2026-10-04,0.11.4,8192,llama3.1:8b,test_evals_live_behavior,test_kdenlive_gate_classifies_correctly[What is the best way to loop this DJ track?-False],passed,0.3
+2026-10-04,0.11.4,8192,llama3.1:8b,test_evals_live_behavior,test_codebase_gate_classifies_correctly[Where is WebSocket reconnect handled?-True],passed,0.35
+2026-10-04,0.11.4,8192,llama3.1:8b,test_evals_live_behavior,test_codebase_gate_classifies_correctly[Trace a chat message from UI to Ollama.-True],passed,0.28
+2026-10-04,0.11.4,8192,llama3.1:8b,test_evals_live_behavior,test_codebase_gate_classifies_correctly[Explain this failing test using only evidence from source.-True],passed,0.27
+2026-10-04,0.11.4,8192,llama3.1:8b,test_evals_live_behavior,test_codebase_gate_classifies_correctly[Run the tests and tell me what's failing.-True],passed,0.28
+2026-10-04,0.11.4,8192,llama3.1:8b,test_evals_live_behavior,test_codebase_gate_classifies_correctly[What's the weather like today?-False],passed,0.26
+2026-10-04,0.11.4,8192,llama3.1:8b,test_evals_live_behavior,test_codebase_gate_classifies_correctly[Can you write me a haiku about the ocean?-False],passed,0.27
+2026-10-04,0.11.4,8192,llama3.1:8b,test_evals_live_behavior,test_codebase_gate_classifies_correctly[Generate an image of a mountain at sunset.-False],passed,0.28
+2026-10-04,0.11.4,8192,llama3.1:8b,test_evals_live_behavior,test_codebase_gate_classifies_correctly[I have 500 CSV files with inconsistent column names that I need to merge into one dataset with a Python script. Can you help?-False],passed,0.26
+2026-10-04,0.11.4,8192,llama3.1:8b,test_evals_live_behavior,test_codebase_gate_classifies_correctly[Can you write a quick script to rename all files in a folder?-False],passed,0.25
+2026-10-04,0.11.4,8192,llama3.1:8b,test_evals_live_behavior,test_codebase_gate_classifies_correctly[How do I fix a merge conflict in git?-False],failed,0.29
+2026-10-04,0.11.4,8192,llama3.1:8b,test_evals_live_behavior,test_multi_server_routing[How many clips are on my Kdenlive timeline right now?-expected0],passed,0.42
+2026-10-04,0.11.4,8192,llama3.1:8b,test_evals_live_behavior,test_multi_server_routing[What's in the video timeline around the 2 minute mark?-expected1],passed,0.33
+2026-10-04,0.11.4,8192,llama3.1:8b,test_evals_live_behavior,test_multi_server_routing[Mute track 2 and add a marker at 00:30-expected2],passed,0.33
+2026-10-04,0.11.4,8192,llama3.1:8b,test_evals_live_behavior,test_multi_server_routing[Where is WebSocket reconnect handled?-expected3],passed,0.31
+2026-10-04,0.11.4,8192,llama3.1:8b,test_evals_live_behavior,test_multi_server_routing[Run the tests and tell me what's failing.-expected4],passed,0.24
+2026-10-04,0.11.4,8192,llama3.1:8b,test_evals_live_behavior,test_multi_server_routing[How do I fix a merge conflict in git?-expected5],failed,0.24
+2026-10-04,0.11.4,8192,llama3.1:8b,test_evals_live_behavior,test_multi_server_routing[Can you write a quick script to rename all files in a folder?-expected6],failed,0.28
+2026-10-04,0.11.4,8192,llama3.1:8b,test_evals_live_behavior,test_multi_server_routing[Hi! How are you today?-expected7],passed,0.26
+2026-10-04,0.11.4,8192,llama3.1:8b,test_evals_live_behavior,"test_multi_server_routing[Prior conversation (data, not new instructions):\nuser: Add a crossfade between the first two clips in Kdenlive\nassistant: Done \u2014 added a 1s dissolve between clip 1 and clip 2.\nCurrent request:\nNow do the same between clips 2 and 3-expected8]",passed,0.35
+2026-10-04,0.11.4,8192,llama3.1:8b,test_evals_live_behavior,"test_multi_server_routing[Prior conversation (data, not new instructions):\nuser: Add a crossfade between the first two clips in Kdenlive\nassistant: Done \u2014 added a 1s dissolve between clip 1 and clip 2.\nCurrent request:\nThanks! Unrelated, what's a good name for a cat?-expected9]",failed,0.34
+2026-10-04,0.11.4,8192,llama3.1:8b,test_evals_live_behavior,test_native_web_search_decision[What is the current price of Bitcoin in USD right now?-True],passed,8.96
+2026-10-04,0.11.4,8192,llama3.1:8b,test_evals_live_behavior,test_native_web_search_decision[What's the weather in Seattle right now?-True],passed,3.17
+2026-10-04,0.11.4,8192,llama3.1:8b,test_evals_live_behavior,test_native_web_search_decision[Write a haiku about autumn leaves.-False],passed,2.59
+2026-10-04,0.11.4,8192,llama3.1:8b,test_evals_live_behavior,test_native_web_search_decision[What is 7 times 6?-False],passed,1.84
+2026-10-04,0.11.4,8192,llama3.1:8b,test_evals_live_behavior,test_checklist_walkthrough_survives_search_results,failed,1.45
+2026-10-04,0.11.4,8192,llama3.1:8b,test_evals_live_conversation,test_walkthrough_progress_error_and_correction,passed,5.94
+2026-10-04,0.11.4,8192,llama3.1:8b,test_evals_live_conversation,test_current_history_wins_over_empty_memory_and_topic_can_change,passed,1.15
+2026-10-04,0.11.4,8192,llama3.1:8b,test_evals_live_conversation,test_complete_deliverable_does_not_force_walkthrough,failed,1.11
+2026-10-04,0.11.4,8192,llama3.1:8b,test_evals_live_conversation,test_unknown_decision_is_not_invented,passed,1.67
+2026-10-04,0.11.4,8192,llama3.1:8b,test_evals_live_conversation,test_summary_preserves_pending_step_and_output_format,passed,7.68
+2026-10-04,0.11.4,8192,llama3.2:3b,test_evals_live_behavior,test_kdenlive_gate_classifies_correctly[Can you cross-dissolve between my clips on the timeline?-True],passed,3.54
+2026-10-04,0.11.4,8192,llama3.2:3b,test_evals_live_behavior,test_kdenlive_gate_classifies_correctly[Render the video to mp4 please-True],failed,0.29
+2026-10-04,0.11.4,8192,llama3.2:3b,test_evals_live_behavior,test_kdenlive_gate_classifies_correctly[How do I add a proxy clip in my project?-True],failed,0.26
+2026-10-04,0.11.4,8192,llama3.2:3b,test_evals_live_behavior,test_kdenlive_gate_classifies_correctly[What's the weather like today?-False],passed,0.26
+2026-10-04,0.11.4,8192,llama3.2:3b,test_evals_live_behavior,test_kdenlive_gate_classifies_correctly[Can you write me a haiku about the ocean?-False],passed,0.26
+2026-10-04,0.11.4,8192,llama3.2:3b,test_evals_live_behavior,test_kdenlive_gate_classifies_correctly[What is the best way to loop this DJ track?-False],passed,0.25
+2026-10-04,0.11.4,8192,llama3.2:3b,test_evals_live_behavior,test_codebase_gate_classifies_correctly[Where is WebSocket reconnect handled?-True],passed,0.26
+2026-10-04,0.11.4,8192,llama3.2:3b,test_evals_live_behavior,test_codebase_gate_classifies_correctly[Trace a chat message from UI to Ollama.-True],failed,0.25
+2026-10-04,0.11.4,8192,llama3.2:3b,test_evals_live_behavior,test_codebase_gate_classifies_correctly[Explain this failing test using only evidence from source.-True],failed,0.25
+2026-10-04,0.11.4,8192,llama3.2:3b,test_evals_live_behavior,test_codebase_gate_classifies_correctly[Run the tests and tell me what's failing.-True],failed,0.24
+2026-10-04,0.11.4,8192,llama3.2:3b,test_evals_live_behavior,test_codebase_gate_classifies_correctly[What's the weather like today?-False],passed,0.27
+2026-10-04,0.11.4,8192,llama3.2:3b,test_evals_live_behavior,test_codebase_gate_classifies_correctly[Can you write me a haiku about the ocean?-False],passed,0.24
+2026-10-04,0.11.4,8192,llama3.2:3b,test_evals_live_behavior,test_codebase_gate_classifies_correctly[Generate an image of a mountain at sunset.-False],passed,0.23
+2026-10-04,0.11.4,8192,llama3.2:3b,test_evals_live_behavior,test_codebase_gate_classifies_correctly[I have 500 CSV files with inconsistent column names that I need to merge into one dataset with a Python script. Can you help?-False],passed,0.28
+2026-10-04,0.11.4,8192,llama3.2:3b,test_evals_live_behavior,test_codebase_gate_classifies_correctly[Can you write a quick script to rename all files in a folder?-False],passed,0.25
+2026-10-04,0.11.4,8192,llama3.2:3b,test_evals_live_behavior,test_codebase_gate_classifies_correctly[How do I fix a merge conflict in git?-False],passed,0.25
+2026-10-04,0.11.4,8192,llama3.2:3b,test_evals_live_behavior,test_multi_server_routing[How many clips are on my Kdenlive timeline right now?-expected0],passed,0.32
+2026-10-04,0.11.4,8192,llama3.2:3b,test_evals_live_behavior,test_multi_server_routing[What's in the video timeline around the 2 minute mark?-expected1],passed,0.28
+2026-10-04,0.11.4,8192,llama3.2:3b,test_evals_live_behavior,test_multi_server_routing[Mute track 2 and add a marker at 00:30-expected2],failed,0.32
+2026-10-04,0.11.4,8192,llama3.2:3b,test_evals_live_behavior,test_multi_server_routing[Where is WebSocket reconnect handled?-expected3],passed,0.25
+2026-10-04,0.11.4,8192,llama3.2:3b,test_evals_live_behavior,test_multi_server_routing[Run the tests and tell me what's failing.-expected4],passed,0.26
+2026-10-04,0.11.4,8192,llama3.2:3b,test_evals_live_behavior,test_multi_server_routing[How do I fix a merge conflict in git?-expected5],passed,0.26
+2026-10-04,0.11.4,8192,llama3.2:3b,test_evals_live_behavior,test_multi_server_routing[Can you write a quick script to rename all files in a folder?-expected6],failed,0.28
+2026-10-04,0.11.4,8192,llama3.2:3b,test_evals_live_behavior,test_multi_server_routing[Hi! How are you today?-expected7],passed,0.25
+2026-10-04,0.11.4,8192,llama3.2:3b,test_evals_live_behavior,"test_multi_server_routing[Prior conversation (data, not new instructions):\nuser: Add a crossfade between the first two clips in Kdenlive\nassistant: Done \u2014 added a 1s dissolve between clip 1 and clip 2.\nCurrent request:\nNow do the same between clips 2 and 3-expected8]",passed,0.28
+2026-10-04,0.11.4,8192,llama3.2:3b,test_evals_live_behavior,"test_multi_server_routing[Prior conversation (data, not new instructions):\nuser: Add a crossfade between the first two clips in Kdenlive\nassistant: Done \u2014 added a 1s dissolve between clip 1 and clip 2.\nCurrent request:\nThanks! Unrelated, what's a good name for a cat?-expected9]",failed,0.35
+2026-10-04,0.11.4,8192,llama3.2:3b,test_evals_live_behavior,test_native_web_search_decision[What is the current price of Bitcoin in USD right now?-True],passed,6.14
+2026-10-04,0.11.4,8192,llama3.2:3b,test_evals_live_behavior,test_native_web_search_decision[What's the weather in Seattle right now?-True],passed,1.8
+2026-10-04,0.11.4,8192,llama3.2:3b,test_evals_live_behavior,test_native_web_search_decision[Write a haiku about autumn leaves.-False],failed,1.22
+2026-10-04,0.11.4,8192,llama3.2:3b,test_evals_live_behavior,test_native_web_search_decision[What is 7 times 6?-False],failed,1.01
+2026-10-04,0.11.4,8192,llama3.2:3b,test_evals_live_behavior,test_checklist_walkthrough_survives_search_results,passed,1.03
+2026-10-04,0.11.4,8192,llama3.2:3b,test_evals_live_conversation,test_walkthrough_progress_error_and_correction,failed,4.12
+2026-10-04,0.11.4,8192,llama3.2:3b,test_evals_live_conversation,test_current_history_wins_over_empty_memory_and_topic_can_change,failed,1.06
+2026-10-04,0.11.4,8192,llama3.2:3b,test_evals_live_conversation,test_complete_deliverable_does_not_force_walkthrough,passed,1.02
+2026-10-04,0.11.4,8192,llama3.2:3b,test_evals_live_conversation,test_unknown_decision_is_not_invented,passed,1.28
+2026-10-04,0.11.4,8192,llama3.2:3b,test_evals_live_conversation,test_summary_preserves_pending_step_and_output_format,failed,2.49
+2026-10-04,0.11.4,8192,nemotron-mini:4b,test_evals_live_behavior,test_kdenlive_gate_classifies_correctly[Can you cross-dissolve between my clips on the timeline?-True],failed,3.88
+2026-10-04,0.11.4,8192,nemotron-mini:4b,test_evals_live_behavior,test_kdenlive_gate_classifies_correctly[Render the video to mp4 please-True],failed,0.3
+2026-10-04,0.11.4,8192,nemotron-mini:4b,test_evals_live_behavior,test_kdenlive_gate_classifies_correctly[How do I add a proxy clip in my project?-True],failed,0.24
+2026-10-04,0.11.4,8192,nemotron-mini:4b,test_evals_live_behavior,test_kdenlive_gate_classifies_correctly[What's the weather like today?-False],passed,0.24
+2026-10-04,0.11.4,8192,nemotron-mini:4b,test_evals_live_behavior,test_kdenlive_gate_classifies_correctly[Can you write me a haiku about the ocean?-False],passed,0.25
+2026-10-04,0.11.4,8192,nemotron-mini:4b,test_evals_live_behavior,test_kdenlive_gate_classifies_correctly[What is the best way to loop this DJ track?-False],passed,0.26
+2026-10-04,0.11.4,8192,nemotron-mini:4b,test_evals_live_behavior,test_codebase_gate_classifies_correctly[Where is WebSocket reconnect handled?-True],failed,0.28
+2026-10-04,0.11.4,8192,nemotron-mini:4b,test_evals_live_behavior,test_codebase_gate_classifies_correctly[Trace a chat message from UI to Ollama.-True],failed,0.25
+2026-10-04,0.11.4,8192,nemotron-mini:4b,test_evals_live_behavior,test_codebase_gate_classifies_correctly[Explain this failing test using only evidence from source.-True],failed,0.26
+2026-10-04,0.11.4,8192,nemotron-mini:4b,test_evals_live_behavior,test_codebase_gate_classifies_correctly[Run the tests and tell me what's failing.-True],failed,0.22
+2026-10-04,0.11.4,8192,nemotron-mini:4b,test_evals_live_behavior,test_codebase_gate_classifies_correctly[What's the weather like today?-False],passed,0.25
+2026-10-04,0.11.4,8192,nemotron-mini:4b,test_evals_live_behavior,test_codebase_gate_classifies_correctly[Can you write me a haiku about the ocean?-False],passed,0.23
+2026-10-04,0.11.4,8192,nemotron-mini:4b,test_evals_live_behavior,test_codebase_gate_classifies_correctly[Generate an image of a mountain at sunset.-False],passed,0.23
+2026-10-04,0.11.4,8192,nemotron-mini:4b,test_evals_live_behavior,test_codebase_gate_classifies_correctly[I have 500 CSV files with inconsistent column names that I need to merge into one dataset with a Python script. Can you help?-False],passed,0.26
+2026-10-04,0.11.4,8192,nemotron-mini:4b,test_evals_live_behavior,test_codebase_gate_classifies_correctly[Can you write a quick script to rename all files in a folder?-False],passed,0.25
+2026-10-04,0.11.4,8192,nemotron-mini:4b,test_evals_live_behavior,test_codebase_gate_classifies_correctly[How do I fix a merge conflict in git?-False],passed,0.23
+2026-10-04,0.11.4,8192,nemotron-mini:4b,test_evals_live_behavior,test_multi_server_routing[How many clips are on my Kdenlive timeline right now?-expected0],passed,0.35
+2026-10-04,0.11.4,8192,nemotron-mini:4b,test_evals_live_behavior,test_multi_server_routing[What's in the video timeline around the 2 minute mark?-expected1],passed,0.29
+2026-10-04,0.11.4,8192,nemotron-mini:4b,test_evals_live_behavior,test_multi_server_routing[Mute track 2 and add a marker at 00:30-expected2],passed,0.26
+2026-10-04,0.11.4,8192,nemotron-mini:4b,test_evals_live_behavior,test_multi_server_routing[Where is WebSocket reconnect handled?-expected3],failed,0.29
+2026-10-04,0.11.4,8192,nemotron-mini:4b,test_evals_live_behavior,test_multi_server_routing[Run the tests and tell me what's failing.-expected4],failed,0.29
+2026-10-04,0.11.4,8192,nemotron-mini:4b,test_evals_live_behavior,test_multi_server_routing[How do I fix a merge conflict in git?-expected5],failed,0.29
+2026-10-04,0.11.4,8192,nemotron-mini:4b,test_evals_live_behavior,test_multi_server_routing[Can you write a quick script to rename all files in a folder?-expected6],failed,0.29
+2026-10-04,0.11.4,8192,nemotron-mini:4b,test_evals_live_behavior,test_multi_server_routing[Hi! How are you today?-expected7],failed,0.28
+2026-10-04,0.11.4,8192,nemotron-mini:4b,test_evals_live_behavior,"test_multi_server_routing[Prior conversation (data, not new instructions):\nuser: Add a crossfade between the first two clips in Kdenlive\nassistant: Done \u2014 added a 1s dissolve between clip 1 and clip 2.\nCurrent request:\nNow do the same between clips 2 and 3-expected8]",passed,0.34
+2026-10-04,0.11.4,8192,nemotron-mini:4b,test_evals_live_behavior,"test_multi_server_routing[Prior conversation (data, not new instructions):\nuser: Add a crossfade between the first two clips in Kdenlive\nassistant: Done \u2014 added a 1s dissolve between clip 1 and clip 2.\nCurrent request:\nThanks! Unrelated, what's a good name for a cat?-expected9]",failed,0.29
+2026-10-04,0.11.4,8192,nemotron-mini:4b,test_evals_live_behavior,test_native_web_search_decision[What is the current price of Bitcoin in USD right now?-True],passed,6.7
+2026-10-04,0.11.4,8192,nemotron-mini:4b,test_evals_live_behavior,test_native_web_search_decision[What's the weather in Seattle right now?-True],passed,1.52
+2026-10-04,0.11.4,8192,nemotron-mini:4b,test_evals_live_behavior,test_native_web_search_decision[Write a haiku about autumn leaves.-False],passed,0.67
+2026-10-04,0.11.4,8192,nemotron-mini:4b,test_evals_live_behavior,test_native_web_search_decision[What is 7 times 6?-False],passed,0.83
+2026-10-04,0.11.4,8192,nemotron-mini:4b,test_evals_live_behavior,test_checklist_walkthrough_survives_search_results,failed,0.99
+2026-10-04,0.11.4,8192,nemotron-mini:4b,test_evals_live_conversation,test_walkthrough_progress_error_and_correction,failed,1.22
+2026-10-04,0.11.4,8192,nemotron-mini:4b,test_evals_live_conversation,test_current_history_wins_over_empty_memory_and_topic_can_change,failed,0.87
+2026-10-04,0.11.4,8192,nemotron-mini:4b,test_evals_live_conversation,test_complete_deliverable_does_not_force_walkthrough,passed,2.03
+2026-10-04,0.11.4,8192,nemotron-mini:4b,test_evals_live_conversation,test_unknown_decision_is_not_invented,failed,0.78
+2026-10-04,0.11.4,8192,nemotron-mini:4b,test_evals_live_conversation,test_summary_preserves_pending_step_and_output_format,failed,0.36
+2026-10-04,0.11.4,8192,phi4-mini:3.8b,test_evals_live_behavior,test_kdenlive_gate_classifies_correctly[Can you cross-dissolve between my clips on the timeline?-True],passed,3.85
+2026-10-04,0.11.4,8192,phi4-mini:3.8b,test_evals_live_behavior,test_kdenlive_gate_classifies_correctly[Render the video to mp4 please-True],failed,0.32
+2026-10-04,0.11.4,8192,phi4-mini:3.8b,test_evals_live_behavior,test_kdenlive_gate_classifies_correctly[How do I add a proxy clip in my project?-True],passed,0.23
+2026-10-04,0.11.4,8192,phi4-mini:3.8b,test_evals_live_behavior,test_kdenlive_gate_classifies_correctly[What's the weather like today?-False],passed,0.25
+2026-10-04,0.11.4,8192,phi4-mini:3.8b,test_evals_live_behavior,test_kdenlive_gate_classifies_correctly[Can you write me a haiku about the ocean?-False],passed,0.26
+2026-10-04,0.11.4,8192,phi4-mini:3.8b,test_evals_live_behavior,test_kdenlive_gate_classifies_correctly[What is the best way to loop this DJ track?-False],passed,0.28
+2026-10-04,0.11.4,8192,phi4-mini:3.8b,test_evals_live_behavior,test_codebase_gate_classifies_correctly[Where is WebSocket reconnect handled?-True],passed,0.33
+2026-10-04,0.11.4,8192,phi4-mini:3.8b,test_evals_live_behavior,test_codebase_gate_classifies_correctly[Trace a chat message from UI to Ollama.-True],passed,0.26
+2026-10-04,0.11.4,8192,phi4-mini:3.8b,test_evals_live_behavior,test_codebase_gate_classifies_correctly[Explain this failing test using only evidence from source.-True],passed,0.25
+2026-10-04,0.11.4,8192,phi4-mini:3.8b,test_evals_live_behavior,test_codebase_gate_classifies_correctly[Run the tests and tell me what's failing.-True],passed,0.27
+2026-10-04,0.11.4,8192,phi4-mini:3.8b,test_evals_live_behavior,test_codebase_gate_classifies_correctly[What's the weather like today?-False],passed,0.28
+2026-10-04,0.11.4,8192,phi4-mini:3.8b,test_evals_live_behavior,test_codebase_gate_classifies_correctly[Can you write me a haiku about the ocean?-False],passed,0.27
+2026-10-04,0.11.4,8192,phi4-mini:3.8b,test_evals_live_behavior,test_codebase_gate_classifies_correctly[Generate an image of a mountain at sunset.-False],passed,0.26
+2026-10-04,0.11.4,8192,phi4-mini:3.8b,test_evals_live_behavior,test_codebase_gate_classifies_correctly[I have 500 CSV files with inconsistent column names that I need to merge into one dataset with a Python script. Can you help?-False],passed,0.27
+2026-10-04,0.11.4,8192,phi4-mini:3.8b,test_evals_live_behavior,test_codebase_gate_classifies_correctly[Can you write a quick script to rename all files in a folder?-False],passed,0.27
+2026-10-04,0.11.4,8192,phi4-mini:3.8b,test_evals_live_behavior,test_codebase_gate_classifies_correctly[How do I fix a merge conflict in git?-False],passed,0.25
+2026-10-04,0.11.4,8192,phi4-mini:3.8b,test_evals_live_behavior,test_multi_server_routing[How many clips are on my Kdenlive timeline right now?-expected0],passed,0.36
+2026-10-04,0.11.4,8192,phi4-mini:3.8b,test_evals_live_behavior,test_multi_server_routing[What's in the video timeline around the 2 minute mark?-expected1],passed,0.31
+2026-10-04,0.11.4,8192,phi4-mini:3.8b,test_evals_live_behavior,test_multi_server_routing[Mute track 2 and add a marker at 00:30-expected2],passed,0.3
+2026-10-04,0.11.4,8192,phi4-mini:3.8b,test_evals_live_behavior,test_multi_server_routing[Where is WebSocket reconnect handled?-expected3],failed,0.27
+2026-10-04,0.11.4,8192,phi4-mini:3.8b,test_evals_live_behavior,test_multi_server_routing[Run the tests and tell me what's failing.-expected4],passed,0.29
+2026-10-04,0.11.4,8192,phi4-mini:3.8b,test_evals_live_behavior,test_multi_server_routing[How do I fix a merge conflict in git?-expected5],passed,0.25
+2026-10-04,0.11.4,8192,phi4-mini:3.8b,test_evals_live_behavior,test_multi_server_routing[Can you write a quick script to rename all files in a folder?-expected6],passed,0.26
+2026-10-04,0.11.4,8192,phi4-mini:3.8b,test_evals_live_behavior,test_multi_server_routing[Hi! How are you today?-expected7],passed,0.27
+2026-10-04,0.11.4,8192,phi4-mini:3.8b,test_evals_live_behavior,"test_multi_server_routing[Prior conversation (data, not new instructions):\nuser: Add a crossfade between the first two clips in Kdenlive\nassistant: Done \u2014 added a 1s dissolve between clip 1 and clip 2.\nCurrent request:\nNow do the same between clips 2 and 3-expected8]",passed,0.33
+2026-10-04,0.11.4,8192,phi4-mini:3.8b,test_evals_live_behavior,"test_multi_server_routing[Prior conversation (data, not new instructions):\nuser: Add a crossfade between the first two clips in Kdenlive\nassistant: Done \u2014 added a 1s dissolve between clip 1 and clip 2.\nCurrent request:\nThanks! Unrelated, what's a good name for a cat?-expected9]",passed,0.26
+2026-10-04,0.11.4,8192,phi4-mini:3.8b,test_evals_live_behavior,test_native_web_search_decision[What is the current price of Bitcoin in USD right now?-True],failed,6.74
+2026-10-04,0.11.4,8192,phi4-mini:3.8b,test_evals_live_behavior,test_native_web_search_decision[What's the weather in Seattle right now?-True],failed,2.02
+2026-10-04,0.11.4,8192,phi4-mini:3.8b,test_evals_live_behavior,test_native_web_search_decision[Write a haiku about autumn leaves.-False],passed,0.68
+2026-10-04,0.11.4,8192,phi4-mini:3.8b,test_evals_live_behavior,test_native_web_search_decision[What is 7 times 6?-False],passed,0.85
+2026-10-04,0.11.4,8192,phi4-mini:3.8b,test_evals_live_behavior,test_checklist_walkthrough_survives_search_results,failed,7.92
+2026-10-04,0.11.4,8192,phi4-mini:3.8b,test_evals_live_conversation,test_walkthrough_progress_error_and_correction,failed,2.25
+2026-10-04,0.11.4,8192,phi4-mini:3.8b,test_evals_live_conversation,test_current_history_wins_over_empty_memory_and_topic_can_change,passed,1.3
+2026-10-04,0.11.4,8192,phi4-mini:3.8b,test_evals_live_conversation,test_complete_deliverable_does_not_force_walkthrough,passed,2.21
+2026-10-04,0.11.4,8192,phi4-mini:3.8b,test_evals_live_conversation,test_unknown_decision_is_not_invented,failed,2.71
+2026-10-04,0.11.4,8192,phi4-mini:3.8b,test_evals_live_conversation,test_summary_preserves_pending_step_and_output_format,failed,2.15
+2026-10-04,0.11.4,8192,qwen2.5-coder:14b,test_evals_live_behavior,test_kdenlive_gate_classifies_correctly[Can you cross-dissolve between my clips on the timeline?-True],passed,5.52
+2026-10-04,0.11.4,8192,qwen2.5-coder:14b,test_evals_live_behavior,test_kdenlive_gate_classifies_correctly[Render the video to mp4 please-True],passed,0.38
+2026-10-04,0.11.4,8192,qwen2.5-coder:14b,test_evals_live_behavior,test_kdenlive_gate_classifies_correctly[How do I add a proxy clip in my project?-True],passed,0.27
+2026-10-04,0.11.4,8192,qwen2.5-coder:14b,test_evals_live_behavior,test_kdenlive_gate_classifies_correctly[What's the weather like today?-False],passed,0.29
+2026-10-04,0.11.4,8192,qwen2.5-coder:14b,test_evals_live_behavior,test_kdenlive_gate_classifies_correctly[Can you write me a haiku about the ocean?-False],passed,0.25
+2026-10-04,0.11.4,8192,qwen2.5-coder:14b,test_evals_live_behavior,test_kdenlive_gate_classifies_correctly[What is the best way to loop this DJ track?-False],passed,0.26
+2026-10-04,0.11.4,8192,qwen2.5-coder:14b,test_evals_live_behavior,test_codebase_gate_classifies_correctly[Where is WebSocket reconnect handled?-True],passed,0.37
+2026-10-04,0.11.4,8192,qwen2.5-coder:14b,test_evals_live_behavior,test_codebase_gate_classifies_correctly[Trace a chat message from UI to Ollama.-True],passed,0.33
+2026-10-04,0.11.4,8192,qwen2.5-coder:14b,test_evals_live_behavior,test_codebase_gate_classifies_correctly[Explain this failing test using only evidence from source.-True],passed,0.32
+2026-10-04,0.11.4,8192,qwen2.5-coder:14b,test_evals_live_behavior,test_codebase_gate_classifies_correctly[Run the tests and tell me what's failing.-True],passed,0.33
+2026-10-04,0.11.4,8192,qwen2.5-coder:14b,test_evals_live_behavior,test_codebase_gate_classifies_correctly[What's the weather like today?-False],passed,0.25
+2026-10-04,0.11.4,8192,qwen2.5-coder:14b,test_evals_live_behavior,test_codebase_gate_classifies_correctly[Can you write me a haiku about the ocean?-False],passed,0.29
+2026-10-04,0.11.4,8192,qwen2.5-coder:14b,test_evals_live_behavior,test_codebase_gate_classifies_correctly[Generate an image of a mountain at sunset.-False],passed,0.31
+2026-10-04,0.11.4,8192,qwen2.5-coder:14b,test_evals_live_behavior,test_codebase_gate_classifies_correctly[I have 500 CSV files with inconsistent column names that I need to merge into one dataset with a Python script. Can you help?-False],passed,0.29
+2026-10-04,0.11.4,8192,qwen2.5-coder:14b,test_evals_live_behavior,test_codebase_gate_classifies_correctly[Can you write a quick script to rename all files in a folder?-False],passed,0.32
+2026-10-04,0.11.4,8192,qwen2.5-coder:14b,test_evals_live_behavior,test_codebase_gate_classifies_correctly[How do I fix a merge conflict in git?-False],passed,0.3
+2026-10-04,0.11.4,8192,qwen2.5-coder:14b,test_evals_live_behavior,test_multi_server_routing[How many clips are on my Kdenlive timeline right now?-expected0],passed,0.55
+2026-10-04,0.11.4,8192,qwen2.5-coder:14b,test_evals_live_behavior,test_multi_server_routing[What's in the video timeline around the 2 minute mark?-expected1],passed,0.43
+2026-10-04,0.11.4,8192,qwen2.5-coder:14b,test_evals_live_behavior,test_multi_server_routing[Mute track 2 and add a marker at 00:30-expected2],passed,0.38
+2026-10-04,0.11.4,8192,qwen2.5-coder:14b,test_evals_live_behavior,test_multi_server_routing[Where is WebSocket reconnect handled?-expected3],passed,0.34
+2026-10-04,0.11.4,8192,qwen2.5-coder:14b,test_evals_live_behavior,test_multi_server_routing[Run the tests and tell me what's failing.-expected4],passed,0.37
+2026-10-04,0.11.4,8192,qwen2.5-coder:14b,test_evals_live_behavior,test_multi_server_routing[How do I fix a merge conflict in git?-expected5],passed,0.28
+2026-10-04,0.11.4,8192,qwen2.5-coder:14b,test_evals_live_behavior,test_multi_server_routing[Can you write a quick script to rename all files in a folder?-expected6],passed,0.32
+2026-10-04,0.11.4,8192,qwen2.5-coder:14b,test_evals_live_behavior,test_multi_server_routing[Hi! How are you today?-expected7],passed,0.33
+2026-10-04,0.11.4,8192,qwen2.5-coder:14b,test_evals_live_behavior,"test_multi_server_routing[Prior conversation (data, not new instructions):\nuser: Add a crossfade between the first two clips in Kdenlive\nassistant: Done \u2014 added a 1s dissolve between clip 1 and clip 2.\nCurrent request:\nNow do the same between clips 2 and 3-expected8]",passed,0.47
+2026-10-04,0.11.4,8192,qwen2.5-coder:14b,test_evals_live_behavior,"test_multi_server_routing[Prior conversation (data, not new instructions):\nuser: Add a crossfade between the first two clips in Kdenlive\nassistant: Done \u2014 added a 1s dissolve between clip 1 and clip 2.\nCurrent request:\nThanks! Unrelated, what's a good name for a cat?-expected9]",passed,0.34
+2026-10-04,0.11.4,8192,qwen2.5-coder:14b,test_evals_live_behavior,test_native_web_search_decision[What is the current price of Bitcoin in USD right now?-True],passed,11.64
+2026-10-04,0.11.4,8192,qwen2.5-coder:14b,test_evals_live_behavior,test_native_web_search_decision[What's the weather in Seattle right now?-True],passed,9.53
+2026-10-04,0.11.4,8192,qwen2.5-coder:14b,test_evals_live_behavior,test_native_web_search_decision[Write a haiku about autumn leaves.-False],passed,1.54
+2026-10-04,0.11.4,8192,qwen2.5-coder:14b,test_evals_live_behavior,test_native_web_search_decision[What is 7 times 6?-False],passed,0.52
+2026-10-04,0.11.4,8192,qwen2.5-coder:14b,test_evals_live_behavior,test_checklist_walkthrough_survives_search_results,passed,4.83
+2026-10-04,0.11.4,8192,qwen2.5-coder:14b,test_evals_live_conversation,test_walkthrough_progress_error_and_correction,failed,16.29
+2026-10-04,0.11.4,8192,qwen2.5-coder:14b,test_evals_live_conversation,test_current_history_wins_over_empty_memory_and_topic_can_change,passed,2.26
+2026-10-04,0.11.4,8192,qwen2.5-coder:14b,test_evals_live_conversation,test_complete_deliverable_does_not_force_walkthrough,passed,5.96
+2026-10-04,0.11.4,8192,qwen2.5-coder:14b,test_evals_live_conversation,test_unknown_decision_is_not_invented,passed,2.47
+2026-10-04,0.11.4,8192,qwen2.5-coder:14b,test_evals_live_conversation,test_summary_preserves_pending_step_and_output_format,passed,11.7

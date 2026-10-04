@@ -9,6 +9,26 @@ them, so you can test your own machine and add a data point.
 
 ## Results so far
 
+### October 4, 2026: tool calling on an RTX 3060 12 GB
+
+Which local model makes a personal agent's tool calls best on a 12 GB card? Models from US
+companies against Qwen2.5 Coder 14B, on 13 generic tool cases (3 runs each) and Arynwood MCP's 36
+live evals. Full write-up: [TOOL-CALLING.md](TOOL-CALLING.md).
+
+| Model | Tool test (39) | Planted instructions refused | Arynwood evals (36) | Speed | Memory |
+|---|---|---|---|---|---|
+| Hermes 3 8B | 36 | 6/6 | 31 | 44.3 tok/s | 6.7 GB |
+| Granite 3.3 8B | 33 | 6/6 | 31 | 43.3 tok/s | 7.8 GB |
+| Phi-4-mini 3.8B | 30 | 6/6 | 28 | 56.7 tok/s | 4.7 GB |
+| Qwen2.5 Coder 14B | 24 | 0/6 | 35 | 17.4 tok/s | 11.8 GB |
+| Llama 3.2 3B | 24 | 6/6 | 23 | 67.6 tok/s | 4.0 GB |
+| Llama 3.1 8B | 22 | 3/6 | 28 | 40.0 tok/s | 6.9 GB |
+| Nemotron Mini 4B | 22 | 6/6 | 18 | 52.8 tok/s | 3.6 GB |
+| Granite 4 3B | 21 | 3/6 | 26 | 62.2 tok/s | 3.9 GB |
+
+gpt-oss 20B passed all 25 cases it finished, but needs about 16 GB at this context length and was
+stopped. Gemma 4 and Nemotron 3 Nano need a newer Ollama than 0.11.4 and are the next round.
+
 ### September 24, 2026: 3B to 33B on an RTX 3060 12 GB
 
 | Model | Memory | RTX 3060 | CPU only |
@@ -61,6 +81,9 @@ No NVIDIA GPU? Add `--modes cpu`. Testing several models:
 `python3 bench.py tinyllama llama3.2:3b qwen2.5:7b-instruct --csv my-results.csv`
 
 To see how much memory longer contexts need: `python3 context_length.py qwen2.5:7b-instruct`
+
+To test tool calling (right tool, no needless calls, using results, ignoring planted instructions):
+`python3 tool_calling.py hermes3:8b --runs 3 --csv my-tool-results.csv` (needs `bench.py` next to it)
 
 The script prints your hardware and one line per model and mode:
 
