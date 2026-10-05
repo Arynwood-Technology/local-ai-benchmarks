@@ -1,0 +1,3 @@
+Five US-developed models, one CPU-only web server. In our matched tests, Ollama 0.35.1 had 24.3% slower median per-model warm throughput than 0.15.2. Two tool-test totals improved, with reliability limitations. These are observations on one shared server, not a universal version ranking.
+
+Results, settings and raw data: https://arynwood.com/local-ai-cpu-only.html

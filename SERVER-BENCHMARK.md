@@ -10,6 +10,20 @@ Scope requested October 4, 2026 (America/New_York). The server's UTC date at exe
 This public report excludes addresses, hostnames, account names, provider identifiers,
 serial numbers, and model digests.
 
+## CPU activity and sharing
+
+![Owner-supplied whole-server CPU activity chart](assets/sharing/cpu-activity.png)
+
+The supplied screenshot is preserved unchanged. It shows sustained activity around
+75–80%, several dips, then a return near idle. It is a whole-server chart, not a
+per-model trace or a website latency test. The displayed 2.7% is the snapshot
+reading, not the benchmark average. Chart times have not been aligned to individual
+benchmark cases.
+
+[Download the sharing graphic](assets/sharing/cpu-benchmark-share.png) and
+[copy the caption](assets/sharing/caption.txt). The HTML source beside these assets
+can reproduce the graphic with a browser at 1200 × 630 pixels.
+
 ## Hardware and scope
 
 - KVM virtual machine: 4 vCPUs presented as Intel Xeon Gold 6138 at 2.00 GHz; AVX2 and AVX-512 available.
