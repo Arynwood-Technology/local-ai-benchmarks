@@ -60,6 +60,12 @@ to every routing step); Hermes 3 8B 36 / 6 of 6 / 32; Granite 3.3 8B 36 / 6 of 6
 Nano 4B 33 / 3 of 6 / 32; Qwen2.5 Coder 14B 24 / 0 of 6 / 33. The same models ran about 40 to 65
 percent faster than on 0.11.4. Details in [TOOL-CALLING.md](TOOL-CALLING.md#round-2-ollama-0351-gemma-4-and-nemotron-3-nano).
 
+**Round 3, October 5: Cloudflare's Clef-flash decision model in the routing step.** No empty
+answers and no planted instruction followed, deciding in 0.37 s against Gemma 4's 4.1 s. But it
+got 26 of Arynwood's 30 decisions (Gemma 4 and Nemotron 3 Nano got 30, Hermes 3 27), and it needs
+10.7 GB at its only Ollama quantization, too much to share the card. Hermes 3 stays. Details in
+[TOOL-CALLING.md](TOOL-CALLING.md#round-3-a-decision-model-clef-flash-for-the-routing-step-october-5-2026).
+
 ### September 24, 2026: 3B to 33B on an RTX 3060 12 GB
 
 | Model | Memory | RTX 3060 | CPU only |

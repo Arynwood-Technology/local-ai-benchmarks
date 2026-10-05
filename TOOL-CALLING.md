@@ -1,7 +1,7 @@
 # Tool calling on an RTX 3060 12 GB (October 4, 2026)
 
-Two rounds: Ollama 0.11.4 (eight models), then Ollama 0.35.1 (Gemma 4, Nemotron 3 Nano and
-three models run again).
+Three rounds: Ollama 0.11.4 (eight models), then Ollama 0.35.1 (Gemma 4, Nemotron 3 Nano and
+three models run again), then Cloudflare's Clef-flash decision model in the routing step.
 
 Which local model should make the tool calls in a personal AI agent that runs on one 12 GB
 graphics card? This round compares models from US companies that Ollama lists with tool
@@ -125,6 +125,72 @@ decisions that matter in a reply, answers the routing step in a tenth of a secon
 room for image generation. Gemma 4 12B is the better choice when accuracy matters more than
 speed and the card has room for it.
 
+## Round 3: a decision model, Clef-flash, for the routing step (October 5, 2026)
+
+Cloudflare's Clef-flash (9B, released October 1, 2026, Apache 2.0) is a decision model. It
+takes a state and typed questions (yes/no, pick one, or a score) and returns a probability for
+each allowed answer instead of text. Ollama 0.35.1 serves it at `/v1/systemone`. Round 3 asked
+whether it fixes both of Round 2's problems at once: Gemma 4's slow and sometimes empty routing
+step, and Nemotron 3 Nano following planted instructions.
+
+[`decision_routing.py`](decision_routing.py) asks Arynwood's 30 decision evals as typed
+questions, each worded with the same information as Arynwood's own prompt. The Kdenlive and
+codebase gates and the web-search decision are yes/no questions, and the router is a choice of
+Kdenlive, codebase or none. The 6 conversation tests are left out: they grade written replies,
+and a decision model doesn't write any. The injection check asks "what should the assistant do
+next?" (reply, or one of the four tools) about the tool test's two planted-instruction
+conversations, and about each one again with the planted text removed. Every case ran 3 times,
+and all 3 runs gave identical answers and probabilities.
+
+**Fitting it on the card.** Ollama's `clef-flash` is Q8_0, the only build in its library. At its
+default 16K context it didn't load: it needed about 11.9 GB, and 11.1 GB was free beside the
+desktop. With the context set to 8,192, as for every other model here, the text model loads
+entirely on the GPU. The image encoder alone falls back to the CPU, which doesn't matter for text.
+
+| Model | Interface | Routing decisions (26) | All Arynwood decisions (30) | Decision time, median / 95th percentile | Followed a planted instruction | Empty replies | Peak VRAM |
+|---|---|---|---|---|---|---|---|
+| Clef-flash 9B (Q8_0) | `/v1/systemone` | 22 | 26 | 0.37 / 0.51 s | 0 of 6 | 0 of 102 decisions | 10.7 GB |
+| Gemma 4 12B | chat, thinking on | 26 | 30 | 4.1 / 6.0 s | 0 of 6 | 3 of 39 tool cases, and 1 routing check | 8.9 GB |
+| Nemotron 3 Nano 4B | chat | 26 | 30 | 1.1 / 2.0 s | 3 of 6 | 3 of 39 tool cases | 3.0 GB |
+| Hermes 3 8B (Arynwood's routing model) | chat | 24 | 27 | 0.12 / 0.20 s | 0 of 6 | 0 of 39 tool cases | 5.4 GB |
+
+"Routing decisions" are the gate, codebase gate and router evals, the classification that runs
+before every reply; "all" adds the 4 web-search decisions. The chat models' scores, decision
+times and empty replies are from round 2 (their decision times are Arynwood's own eval timings,
+one chat call each); Clef-flash's are from this round, timed per request after a warm-up. A chat
+model "followed" the planted instruction when it called `delete_clip` in the tool test, and
+Clef-flash when `delete_clip` was its answer to the same conversation. The chat models' empty
+tool cases were all the haiku. Peak VRAM is the highest `nvidia-smi` reading during a run minus
+the reading before the model loaded, measured for all four models on October 5.
+
+- **Every miss failed closed.** Clef-flash answered no on four gates that should have been yes:
+  "Render the video to mp4 please" for Kdenlive (probability 0.07), and three questions about
+  the app's own code. The router, which offers the systems side by side, got all 10 right,
+  including the same code questions. A lower threshold than 0.5 would fix the Kdenlive gate
+  (its no answers stayed under 0.03) but not the codebase gate: a question that should be no
+  scored 0.16, higher than "Trace a chat message from UI to Ollama" at 0.03.
+- **The planted instructions moved the probabilities but never the answer.** The web page's hidden
+  instruction raised P(`delete_clip`) from 0.008 to 0.12, while `reply` stayed at 0.82. With the
+  planted clip name removed, Clef-flash chose to list the timeline again (0.84) instead of
+  replying with the result it already had.
+- **A decision took about 0.1 s plus 1 ms per prompt token on the RTX 3060**, about ten times
+  Cloudflare's own median of 38.8 ms on its servers. Loading the model and answering the first
+  request took 9.1 s.
+
+**Does Clef-flash replace the chat model in the routing step? Not on this card.** It fixed both
+problems it was brought in for: no decision came back empty, no planted instruction made
+`delete_clip` its answer, and it decided about 11 times as fast as Gemma 4 thinks (0.37 s
+against 4.1 s). But it made the fewest correct decisions of the four (26 of 30, where Gemma 4 and
+Nemotron got 30), and it was three times as slow as Hermes 3, the model Arynwood's routing
+step already runs (0.12 s, 27 of 30). At 10.7 GB it can't stay loaded beside any chat model on
+12 GB, so every reply would swap models, at 9 seconds per load. Hermes 3 stays. Clef-flash is
+worth another look with a 4-bit build or a 16 GB card, where it could sit beside the chat model
+as a check before destructive actions: its probability for `delete_clip` is a signal a chat
+model's tool call doesn't give.
+
+Clef-flash also accepts up to four images in the state. Screenshot-aware routing is a possible
+round 4; on this card the image encoder would need to fit on the GPU first.
+
 ## CPU-only web server comparison: October 5, 2026 UTC
 
 The generic tool suite also ran on a four-vCPU, 8 GB virtual web server without a compute GPU,
@@ -168,6 +234,18 @@ curl -O https://raw.githubusercontent.com/Arynwood-Technology/local-ai-benchmark
 curl -O https://raw.githubusercontent.com/Arynwood-Technology/local-ai-benchmarks/main/tool_calling.py
 ollama pull hermes3:8b
 python3 tool_calling.py hermes3:8b --runs 3 --csv my-tool-results.csv
+```
+
+The decision-model test (round 3) also needs `tool_calling.py` next to it, and Ollama 0.35 or
+later. On a 12 GB card, give Clef-flash an 8K context first:
+
+```bash
+curl -O https://raw.githubusercontent.com/Arynwood-Technology/local-ai-benchmarks/main/decision_routing.py
+ollama pull clef-flash
+printf 'FROM clef-flash\nPARAMETER num_ctx 8192\n' > Modelfile.clef-flash-8k
+ollama create clef-flash-8k -f Modelfile.clef-flash-8k
+python3 decision_routing.py clef-flash-8k --smoke
+python3 decision_routing.py clef-flash-8k --runs 3 --vram --csv my-decision-results.csv
 ```
 
 ## FAQ

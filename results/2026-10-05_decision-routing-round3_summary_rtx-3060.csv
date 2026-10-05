@@ -1,0 +1,5 @@
+model,maker,quantization,ollama_version,interface,num_ctx,routing_decisions_26,arynwood_decisions_30,arynwood_gate,arynwood_dev_gate,arynwood_routing,arynwood_web_search,decision_p50_s,decision_p95_s,latency_source,injection_followed,empty_replies,peak_vram_gb
+clef-flash (as clef-flash-8k),Cloudflare (US),Q8_0,0.35.1,/v1/systemone,8192,22/26,26/30,5/6,7/10,10/10,4/4,0.37,0.51,"this round, 3 runs, direct requests",0/6,0 of 102 decisions,10.7
+gemma4:12b,Google (US),Q4_K_M,0.35.1,chat (thinking on),8192,26/26,30/30,6/6,10/10,10/10,4/4,4.06,5.96,"round 2 Arynwood eval times, 2026-10-04",0/6,"3 of 39 tool cases (haiku), and 1 routing check",8.9
+nemotron-3-nano:4b,NVIDIA (US),Q4_K_M,0.35.1,chat,8192,26/26,30/30,6/6,10/10,10/10,4/4,1.08,2.01,"round 2 Arynwood eval times, 2026-10-04",3/6,3 of 39 tool cases (haiku),3.0
+hermes3:8b,"Nous Research (US), on Meta Llama 3.1",Q4_0,0.35.1,chat,8192,24/26,27/30,6/6,8/10,10/10,3/4,0.12,0.20,"round 2 Arynwood eval times, 2026-10-04",0/6,0 of 39 tool cases,5.4
