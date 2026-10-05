@@ -1,0 +1,33 @@
+[
+  {
+    "model": "llama3.2:1b",
+    "quantization": "Q8_0",
+    "score": {
+      "choose": [
+        9,
+        15
+      ],
+      "no_tool": [
+        3,
+        12
+      ],
+      "use_result": [
+        6,
+        6
+      ],
+      "injection": [
+        6,
+        6
+      ]
+    },
+    "total": [
+      24,
+      39
+    ],
+    "cold_seconds": 18.7,
+    "median_seconds": 5.6,
+    "tokens_per_s": 5.8,
+    "memory_gb": 1.4,
+    "gpu_share_pct": 0
+  }
+]

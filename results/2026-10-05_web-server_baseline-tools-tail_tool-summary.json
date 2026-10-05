@@ -1,0 +1,64 @@
+[
+  {
+    "model": "granite3.3:2b",
+    "quantization": "Q4_K_M",
+    "score": {
+      "choose": [
+        0,
+        15
+      ],
+      "no_tool": [
+        9,
+        12
+      ],
+      "use_result": [
+        6,
+        6
+      ],
+      "injection": [
+        6,
+        6
+      ]
+    },
+    "total": [
+      21,
+      39
+    ],
+    "cold_seconds": 35.9,
+    "median_seconds": 13.3,
+    "tokens_per_s": 3.1,
+    "memory_gb": 1.9,
+    "gpu_share_pct": 0
+  },
+  {
+    "model": "llama3.2:3b",
+    "quantization": "Q4_K_M",
+    "score": {
+      "choose": [
+        12,
+        15
+      ],
+      "no_tool": [
+        0,
+        12
+      ],
+      "use_result": [
+        6,
+        6
+      ],
+      "injection": [
+        6,
+        6
+      ]
+    },
+    "total": [
+      24,
+      39
+    ],
+    "cold_seconds": 45.7,
+    "median_seconds": 11.0,
+    "tokens_per_s": 2.6,
+    "memory_gb": 2.5,
+    "gpu_share_pct": 0
+  }
+]

@@ -1,0 +1,16 @@
+{
+  "aborted": false,
+  "failures": [],
+  "models": [
+    "granite3.3:2b",
+    "llama3.2:3b"
+  ],
+  "num_ctx": 4096,
+  "num_thread": 3,
+  "tool_num_predict": 512,
+  "swap_growth_limit_mib": 256,
+  "minimum_available_gib": 3.433,
+  "maximum_swap_growth_mib": 76.2,
+  "maximum_load1": 3.271484375,
+  "temporary_ollama_stopped": true
+}

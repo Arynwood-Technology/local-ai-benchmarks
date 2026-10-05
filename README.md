@@ -9,13 +9,39 @@ them, so you can test your own machine and add a data point.
 
 ## Results so far
 
+### October 5, 2026 UTC: CPU-only web server, Ollama 0.15.2 versus 0.35.1
+
+Four KVM vCPUs presented as a Xeon Gold 6138, 8 GB RAM, no compute GPU. Five US-developed
+models, identical cached weights, three inference threads, 4,096-token context, one cold request
+and three warm requests per version. The installed server version stayed unchanged; the second
+round used a temporary 0.35.1 binary.
+
+| Model | Quantization | 0.15.2 tok/s | 0.35.1 tok/s | Change |
+|---|---|---:|---:|---:|
+| Llama 3.2 1B (Meta) | Q8_0 | 7.2 | 5.0 | -30.6% |
+| Gemma 3 1B (Google) | Q4_K_M | 9.3 | 5.8 | -37.6% |
+| Granite 3.3 2B (IBM) | Q4_K_M | 3.7 | 2.8 | -24.3% |
+| Gemma 2B (original) (Google) | Q4_0 | 3.3 | 3.1 | -6.1% |
+| Llama 3.2 3B (Meta) | Q4_K_M | 2.8 | 2.5 | -10.7% |
+
+Median per-model throughput change: **-24.3%**. Cold latency and tool behavior
+are separate measurements. Tool scores out of 39 (old → new): Llama 3.2 1B 24 → 24; Granite 3.3 2B 21 → 27; Llama 3.2 3B 24 → 27.
+Granite's higher score came with more unnecessary tool calls. The report includes category scores and an
+injection-scoring limitation: plain-text deletion attempts can pass the recognized-call check.
+
+[Full report, cold latencies, memory, tool categories and resource interruptions](SERVER-BENCHMARK.md).
+[Public CPU guide](https://arynwood.com/local-ai-cpu-only.html). Raw data is in `results/`.
+The versions ran sequentially on a shared server, so this is an observational comparison. Early swap
+guards stopped runs with ample available RAM; the report records policy changes and untested candidates.
+No server addresses, hostnames, accounts or provider identifiers are included.
+
 ### October 4, 2026: tool calling on an RTX 3060 12 GB
 
 Which local model makes a personal agent's tool calls best on a 12 GB card? Models from US
 companies against Qwen2.5 Coder 14B, on 13 generic tool cases (3 runs each) and Arynwood MCP's 36
 live evals. Full write-up: [TOOL-CALLING.md](TOOL-CALLING.md).
 
-| Model | Tool test (39) | Planted instructions refused | Arynwood evals (36) | Speed | Memory |
+| Model | Tool test (39) | Injection check passes | Arynwood evals (36) | Speed | Memory |
 |---|---|---|---|---|---|
 | Hermes 3 8B | 36 | 6/6 | 31 | 44.3 tok/s | 6.7 GB |
 | Granite 3.3 8B | 33 | 6/6 | 31 | 43.3 tok/s | 7.8 GB |
@@ -65,8 +91,10 @@ Memory for Qwen2.5 7B at different context lengths (`num_ctx`), all 100% on the 
 Warm speed is the median of three runs with 200-token answers. A token is roughly three-quarters of a
 word, and most people read about 5 tokens per second. Raw data is in [`results/`](results/).
 
-One machine is one data point. A modern CPU with AVX2 or AVX-512 and faster memory will beat these CPU
-numbers, often by a wide margin. That's why more machines are wanted.
+One machine is one data point. Instruction sets, core allocation, memory bandwidth, virtualization,
+background work and runtime versions all affect speed. Our four-vCPU server with AVX2 and AVX-512
+was slower than this desktop on the same 3B model, with different thread and software settings.
+See the [paired server report](SERVER-BENCHMARK.md). More machines are wanted.
 
 ## One-machine operating-system comparison
 
@@ -100,6 +128,14 @@ tinyllama:latest             gpu   197.6 tokens/s warm     2.9 s cold   1.3 GB
 ```
 
 (That sample used one warm run; the published numbers use three.)
+
+For a bounded CPU-only server run, copy `bench.py`, `tool_calling.py` and `server_benchmark.py`
+into a fresh directory for each version, then run `python3 server_benchmark.py`. It defaults to
+these five server models and uses a temporary loopback-only runtime. `BENCH_OLLAMA_BINARY` can
+select an unpacked runtime; `BENCH_SKIP_PULL=1` reuses cached weights. `BENCH_MODELS` overrides
+the model list. The runner writes `speed.csv`, `tools.csv`, `tool-summary.json` and `run-status.json`.
+Use a fresh directory because those files are overwritten on a new run. Read the report for the
+reserve policy and its limits before applying the same settings to different hardware.
 
 ## Share your results
 

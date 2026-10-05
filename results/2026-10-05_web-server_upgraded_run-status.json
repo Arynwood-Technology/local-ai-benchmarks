@@ -1,0 +1,25 @@
+{
+  "aborted": true,
+  "failures": [
+    {
+      "model": "granite3.3:2b",
+      "stage": "speed",
+      "error_type": "RemoteDisconnected"
+    }
+  ],
+  "models": [
+    "llama3.2:1b",
+    "gemma3:1b",
+    "granite3.3:2b",
+    "gemma:2b-instruct-q4_0",
+    "llama3.2:3b"
+  ],
+  "num_ctx": 4096,
+  "num_thread": 3,
+  "tool_num_predict": 512,
+  "swap_growth_limit_mib": 256,
+  "minimum_available_gib": 4.556,
+  "maximum_swap_growth_mib": 422.5,
+  "maximum_load1": 3.22265625,
+  "temporary_ollama_stopped": true
+}

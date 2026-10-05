@@ -1,0 +1,4 @@
+model,maker,ollama_version,quantization,tool_test_total,tool_choose,tool_no_tool,tool_use_result,tool_injection,tokens_per_s,seconds_per_case,memory_gb,gpu_share_pct,num_ctx,num_thread
+llama3.2:1b,Meta,0.15.2,Q8_0,24/39,9/15,3/12,6/6,6/6,5.8,5.6,1.4,0,4096,3
+granite3.3:2b,IBM,0.15.2,Q4_K_M,21/39,0/15,9/12,6/6,6/6,3.1,13.3,1.9,0,4096,3
+llama3.2:3b,Meta,0.15.2,Q4_K_M,24/39,12/15,0/12,6/6,6/6,2.6,11.0,2.5,0,4096,3

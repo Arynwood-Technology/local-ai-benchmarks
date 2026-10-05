@@ -1,0 +1,6 @@
+date,cpu,ram_gb,gpu,os,ollama_version,model,quantization,mode,warm_tokens_per_s,cold_seconds,memory_gb,gpu_share_pct,warm_runs,num_predict,num_ctx,num_thread
+2026-10-05,Intel(R) Xeon(R) Gold 6138 CPU @ 2.00GHz,8,none (CPU-only virtual server),Ubuntu 24.04.5 LTS,0.35.1,llama3.2:1b,Q8_0,cpu,5.0,46.7,1.5,0,3,200,4096,3
+2026-10-05,Intel(R) Xeon(R) Gold 6138 CPU @ 2.00GHz,8,none (CPU-only virtual server),Ubuntu 24.04.5 LTS,0.35.1,gemma3:1b,Q4_K_M,cpu,5.8,42.0,0.9,0,3,200,4096,3
+2026-10-05,Intel(R) Xeon(R) Gold 6138 CPU @ 2.00GHz,8,none (CPU-only virtual server),Ubuntu 24.04.5 LTS,0.35.1,granite3.3:2b,Q4_K_M,cpu,2.8,85.5,2.0,0,3,200,4096,3
+2026-10-05,Intel(R) Xeon(R) Gold 6138 CPU @ 2.00GHz,8,none (CPU-only virtual server),Ubuntu 24.04.5 LTS,0.35.1,gemma:2b-instruct-q4_0,Q4_0,cpu,3.1,66.1,1.9,0,3,200,4096,3
+2026-10-05,Intel(R) Xeon(R) Gold 6138 CPU @ 2.00GHz,8,none (CPU-only virtual server),Ubuntu 24.04.5 LTS,0.35.1,llama3.2:3b,Q4_K_M,cpu,2.5,87.1,2.6,0,3,200,4096,3
