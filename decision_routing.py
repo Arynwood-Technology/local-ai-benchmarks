@@ -32,12 +32,23 @@ Clef-flash at its default 16K context doesn't fit; make an 8K copy first:
     ollama create clef-flash-8k -f Modelfile.clef-flash-8k
     python3 decision_routing.py clef-flash-8k --smoke
     python3 decision_routing.py clef-flash-8k --runs 3 --vram --csv my-decision-results.csv
+
+Models Ollama can't serve yet (Liquid AI's d1-3B and d1-omni-600M on Ollama 0.35.1 and 0.40.2:
+'unsupported decision encoding') run on llama.cpp's llama-server, which has the same /v1/systemone.
+--serve gives the command; the script starts it for the one model named, so the cold time covers
+loading, as with Ollama, and stops it at the end. One slot (-np 1) keeps the whole 8K context:
+
+    python3 decision_routing.py d1-3B --serve 'llama-server -hf LiquidAI/d1-3B-GGUF:Q8_0 -c 8192 -np 1 -ngl 99 --port 8080' \
+        --host http://127.0.0.1:8080 --runs 3 --vram --csv my-decision-results.csv
 """
 import argparse
+import atexit
 import csv
 import datetime
 import json
 import os
+import re
+import shlex
 import statistics
 import subprocess
 import sys
@@ -214,6 +225,36 @@ class VramSampler:
         return max(self.readings) if self.readings else None
 
 
+class LlamaServer:
+    """A llama.cpp llama-server started from a command line, ready once /health says ok."""
+
+    def __init__(self, command, host):
+        self.proc = subprocess.Popen(shlex.split(command), stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
+        atexit.register(self.stop)
+        for _ in range(1200):
+            if self.proc.poll() is not None:
+                sys.exit(f'llama-server exited with code {self.proc.returncode}; run the --serve command by hand to see why')
+            try:
+                if bench.api(host, '/health', timeout=2).get('status') == 'ok':
+                    return
+            except (urllib.error.URLError, OSError, ValueError):
+                pass
+            time.sleep(0.25)
+        sys.exit('llama-server was not ready after 5 minutes')
+
+    def stop(self):
+        if self.proc.poll() is None:
+            self.proc.terminate()
+            self.proc.wait()
+
+
+def llama_server_version(command):
+    """'b11524 (commit 86a283532)' from the --serve binary's --version, or ''."""
+    out = subprocess.run(shlex.split(command)[:1] + ['--version'], capture_output=True, text=True)
+    m = re.search(r'build (\d+), commit (\w+)', out.stdout + out.stderr)
+    return f'b{m.group(1)} (commit {m.group(2)})' if m else ''
+
+
 def smoke(host, model):
     """Known-answer decisions. True if every one came back typed, with probabilities, and right."""
     ok = True
@@ -231,18 +272,24 @@ def smoke(host, model):
     return ok
 
 
-def run_model(host, model, runs, use_vram, machine, writer):
-    bench.unload(host, model)
+def run_model(host, model, runs, use_vram, machine, writer, serve=None):
+    if not serve:
+        bench.unload(host, model)
     sampler = VramSampler() if use_vram else None
     baseline = sampler.latest() if sampler else None
     started = time.monotonic()
+    server = LlamaServer(serve, host) if serve else None
     decide(host, model, 'Say OK.', {'type': 'noul', 'instructions': 'Is this a greeting?', 'criteria': YES_NO})
     cold = round(time.monotonic() - started, 1)
     warmup = []
     for _, state, question, _ in SMOKE[:2]:
         warmup.append(round(decide(host, model, state, question)[1], 2))
-    memory_gb, gpu_share = bench.loaded_memory(host, model)
-    quant = bench.quantization(host, model)
+    if server:  # llama-server reports no memory; --vram measures it
+        memory_gb, gpu_share = '', ''
+        quant = bench.api(host, '/props').get('model_ftype', '')
+    else:
+        memory_gb, gpu_share = bench.loaded_memory(host, model)
+        quant = bench.quantization(host, model)
 
     passed = {c: [] for c in CATEGORIES}
     seconds = {c: [] for c in CATEGORIES}
@@ -292,7 +339,10 @@ def run_model(host, model, runs, use_vram, machine, writer):
                                  'seconds': round(secs, 4), 'input_tokens': tokens,
                                  'error': raw.get('error', '') if value is None else ''})
     peak = sampler.stop() if sampler else None
-    bench.unload(host, model)
+    if server:
+        server.stop()
+    else:
+        bench.unload(host, model)
 
     routing_secs = [s for c in ROUTING_CATEGORIES for s in seconds[c]]
     all_secs = [s for c in CATEGORIES for s in seconds[c]]
@@ -321,18 +371,28 @@ def main():
     ap.add_argument('--host', default=os.environ.get('OLLAMA_HOST_URL', 'http://localhost:11434'))
     ap.add_argument('--csv', help='write one row per decision and run to this file')
     ap.add_argument('--summary', help='write one JSON summary per model (a JSON list) to this file')
+    ap.add_argument('--serve', help="a llama-server command to start for the one model named, instead of Ollama; "
+                                    "--host must match its port")
     args = ap.parse_args()
+    if args.serve and len(args.models) != 1:
+        ap.error('--serve runs one model')
 
-    try:
-        version = bench.api(args.host, '/api/version').get('version', '')
-    except (urllib.error.URLError, OSError) as exc:
-        sys.exit(f'Ollama is not reachable at {args.host}: {exc}')
     hw = bench.hardware()
     machine = {'date': datetime.date.today().isoformat(), 'cpu': hw['cpu'], 'ram_gb': hw['ram_gb'],
-               'gpu': hw['gpu'], 'os': hw['os'], 'ollama_version': version}
-    print(f"{hw['cpu']} · {hw['ram_gb']} GB RAM · {hw['gpu'] or 'no GPU found'} · {hw['os']} · Ollama {version}\n")
+               'gpu': hw['gpu'], 'os': hw['os']}
+    if args.serve:
+        machine['llama_cpp_version'] = llama_server_version(args.serve)
+        runtime = f"llama.cpp {machine['llama_cpp_version']}"
+    else:
+        try:
+            machine['ollama_version'] = bench.api(args.host, '/api/version').get('version', '')
+        except (urllib.error.URLError, OSError) as exc:
+            sys.exit(f'Ollama is not reachable at {args.host}: {exc}')
+        runtime = f"Ollama {machine['ollama_version']}"
+    print(f"{hw['cpu']} · {hw['ram_gb']} GB RAM · {hw['gpu'] or 'no GPU found'} · {hw['os']} · {runtime}\n")
 
     if args.smoke:
+        server = LlamaServer(args.serve, args.host) if args.serve else None
         ok = True
         for model in args.models:
             print(model)
@@ -341,6 +401,8 @@ def main():
             except urllib.error.HTTPError as exc:
                 print(f'  failed: {exc.code} {exc.read().decode(errors="replace")[:200]}')
                 ok = False
+        if server:
+            server.stop()
         sys.exit(0 if ok else 1)
 
     fields = list(machine) + ['model', 'quantization', 'case', 'category', 'variant', 'run', 'state', 'expected',
@@ -353,7 +415,7 @@ def main():
     try:
         for model in args.models:
             try:
-                r = run_model(args.host, model, args.runs, args.vram, machine, writer)
+                r = run_model(args.host, model, args.runs, args.vram, machine, writer, args.serve)
             except urllib.error.HTTPError as exc:
                 print(f'{model:20} skipped: {exc.read().decode(errors="replace")[:200]}')
                 continue

@@ -66,6 +66,16 @@ got 26 of Arynwood's 30 decisions (Gemma 4 and Nemotron 3 Nano got 30, Hermes 3 
 10.7 GB at its only Ollama quantization, too much to share the card. Hermes 3 stays. Details in
 [TOOL-CALLING.md](TOOL-CALLING.md#round-3-a-decision-model-clef-flash-for-the-routing-step-october-5-2026).
 
+**Round 4, October 9: JetBrains' Mellum2.1 and Liquid AI's d1 decision models.** Mellum2.1 (12B
+with 2.5B active, thinking) got 33 of Arynwood's 36 evals, second to Gemma 4, at 138 tok/s in
+8.2 GB with a 1.3 s routing call. But it called `delete_clip` from a planted web page in every run,
+and returned empty replies when thinking used up the reply limit. d1-3B made 25 of 30 decisions
+(Clef-flash 26) in 42 ms and 3.6 GB, and followed no planted instruction. d1-omni-600M made 18 of
+30 and followed the planted clip name. Ollama doesn't serve the d1 models yet, so they ran on
+llama.cpp b11524. Hermes 3 stays; d1-3B is small enough to share the card with it as a check
+before destructive actions, still to be tested. Details in
+[TOOL-CALLING.md](TOOL-CALLING.md#round-4-mellum21-and-liquid-ais-d1-decision-models-october-9-2026).
+
 ### September 24, 2026: 3B to 33B on an RTX 3060 12 GB
 
 | Model | Memory | RTX 3060 | CPU only |
