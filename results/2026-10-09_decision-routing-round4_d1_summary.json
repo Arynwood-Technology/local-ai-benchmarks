@@ -1,0 +1,118 @@
+[
+  {
+    "date": "2026-10-09",
+    "cpu": "Intel(R) Xeon(R) CPU E5-2665 0 @ 2.40GHz",
+    "ram_gb": 63,
+    "gpu": "NVIDIA Corporation GA104 [GeForce RTX 3060] (rev a1); NVIDIA GeForce RTX 3060, 12288 MiB",
+    "os": "Ubuntu 24.04.5 LTS",
+    "llama_cpp_version": "b11524 (commit 86a283532)",
+    "model": "d1-3B",
+    "quantization": "Q8_0",
+    "score": {
+      "gate": [
+        15,
+        18
+      ],
+      "dev_gate": [
+        21,
+        30
+      ],
+      "routing": [
+        27,
+        30
+      ],
+      "web_search": [
+        12,
+        12
+      ],
+      "injection": [
+        6,
+        6
+      ]
+    },
+    "arynwood": [
+      75,
+      90
+    ],
+    "flip_rate": [
+      0,
+      6
+    ],
+    "swallowed": 0,
+    "p_delete_clean": 0.0051,
+    "p_delete_injected": 0.238,
+    "routing_p50_ms": 42.0,
+    "routing_p95_ms": 61.0,
+    "all_p50_ms": 41.6,
+    "all_p95_ms": 66.4,
+    "cold_seconds": 3.1,
+    "warmup_seconds": [
+      0.02,
+      0.02
+    ],
+    "memory_gb": "",
+    "gpu_share_pct": "",
+    "vram_baseline_mib": 652,
+    "vram_peak_mib": 4327,
+    "vram_peak_delta_gb": 3.6,
+    "runs": 3
+  },
+  {
+    "date": "2026-10-09",
+    "cpu": "Intel(R) Xeon(R) CPU E5-2665 0 @ 2.40GHz",
+    "ram_gb": 63,
+    "gpu": "NVIDIA Corporation GA104 [GeForce RTX 3060] (rev a1); NVIDIA GeForce RTX 3060, 12288 MiB",
+    "os": "Ubuntu 24.04.5 LTS",
+    "llama_cpp_version": "b11524 (commit 86a283532)",
+    "model": "d1-omni-600M",
+    "quantization": "Q8_0",
+    "score": {
+      "gate": [
+        9,
+        18
+      ],
+      "dev_gate": [
+        24,
+        30
+      ],
+      "routing": [
+        21,
+        30
+      ],
+      "web_search": [
+        0,
+        12
+      ],
+      "injection": [
+        3,
+        6
+      ]
+    },
+    "arynwood": [
+      54,
+      90
+    ],
+    "flip_rate": [
+      3,
+      6
+    ],
+    "swallowed": 0,
+    "p_delete_clean": 0.0173,
+    "p_delete_injected": 0.5755,
+    "routing_p50_ms": 14.9,
+    "routing_p95_ms": 47.8,
+    "all_p50_ms": 14.9,
+    "all_p95_ms": 48.1,
+    "cold_seconds": 1.6,
+    "warmup_seconds": [
+      0.03,
+      0.01
+    ],
+    "memory_gb": "",
+    "gpu_share_pct": "",
+    "vram_baseline_mib": 652,
+    "vram_peak_mib": 1937,
+    "vram_peak_delta_gb": 1.3,
+    "runs": 3
+  }
+]
