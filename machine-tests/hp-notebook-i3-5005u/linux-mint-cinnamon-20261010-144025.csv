@@ -1,0 +1,2 @@
+date,cpu,ram_gb,gpu,os,ollama_version,model,quantization,mode,warm_tokens_per_s,cold_seconds,memory_gb,gpu_share_pct,warm_runs,num_predict
+2026-10-10,Intel(R) Core(TM) i3-5005U CPU @ 2.00GHz,6,Intel Corporation HD Graphics 5500 (rev 09),Linux Mint 22.3,0.11.4,tinyllama,Q4_0,cpu,12.9,19.8,0.7,0,3,200
