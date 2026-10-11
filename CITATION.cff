@@ -8,6 +8,10 @@ authors:
     orcid: "https://orcid.org/0009-0007-8723-2857"
 url: "https://arynwood.com/local-ai-cpu-only.html"
 repository-code: "https://github.com/Arynwood-Technology/local-ai-benchmarks"
+identifiers:
+  - type: doi
+    value: 10.5281/zenodo.23290682
+    description: "Archived HP Notebook (Intel Core i3-5005U) run: Linux Mint 22.3 vs Windows 10, Ollama 0.11.4, TinyLlama Q4_0 (version 1.0.0)"
 license: CC-BY-4.0
 date-released: "2026-10-05"
 keywords:
