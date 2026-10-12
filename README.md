@@ -1,5 +1,7 @@
 # Local AI benchmarks
 
+![Real recorded TinyLlama answer played at measured Linux Mint and Windows speeds on the same HP laptop](docs/media/mint-vs-windows.gif)
+
 How fast do local language models really run on ordinary hardware? This repository holds measured
 [Ollama](https://ollama.com) generation speeds, CPU-only and on a GPU, and the script that produced
 them, so you can test your own machine and add a data point.
@@ -115,7 +117,7 @@ See the [paired server report](SERVER-BENCHMARK.md). More machines are wanted.
 
 ## One-machine operating-system comparison
 
-[HP Notebook i3-5005U: Windows 10 vs Linux Mint Cinnamon](machine-tests/hp-notebook-i3-5005u/) — a paired test on the same 6 GB laptop, using the same Ollama version and model.
+[HP Notebook i3-5005U: Windows 10 vs Linux Mint Cinnamon](machine-tests/hp-notebook-i3-5005u/) : a paired test on the same 6 GB laptop, using the same Ollama version and model.
 
 ## Test your own machine
 
