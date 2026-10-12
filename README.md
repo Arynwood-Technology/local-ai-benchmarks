@@ -179,7 +179,7 @@ the context. These numbers are for short answers to a short prompt.
 - **Results data** (`results/`): [CC BY 4.0](results/LICENSE). Credit "Arynwood" and link to
   https://arynwood.com/local-ai-cpu-only.html.
 - **bench.py**: [MIT](LICENSE).
-- Citation details are in [CITATION.cff](CITATION.cff).
+- Citation details are in [CITATION.cff](CITATION.cff). [Also on Hugging Face](https://huggingface.co/datasets/Arynwood/local-ai-benchmarks).
 
 ---
 
