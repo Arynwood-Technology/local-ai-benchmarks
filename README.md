@@ -2,7 +2,7 @@
 
 ![Real recorded TinyLlama answer played at measured Linux Mint and Windows speeds on the same HP laptop](docs/media/mint-vs-windows.gif)
 
-Measured local model speeds and tool behavior on ordinary hardware, with scripts and data. This repository holds measured
+How fast do local language models really run on ordinary hardware? This repository holds measured
 [Ollama](https://ollama.com) generation speeds, CPU-only and on a GPU, and the script that produced
 them, so you can test your own machine and add a data point.
 
