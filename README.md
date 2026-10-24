@@ -2,7 +2,7 @@
 
 ![Real recorded TinyLlama answer played at measured Linux Mint and Windows speeds on the same HP laptop](docs/media/mint-vs-windows.gif)
 
-How fast do local language models really run on ordinary hardware? This repository holds measured
+Measured local model speeds and tool behavior on ordinary hardware, with scripts and data. This repository holds measured
 [Ollama](https://ollama.com) generation speeds, CPU-only and on a GPU, and the script that produced
 them, so you can test your own machine and add a data point.
 
@@ -185,3 +185,9 @@ the context. These numbers are for short answers to a short prompt.
 
 From [Arynwood Technology](https://arynwood.com/). Want local AI set up on your own machine?
 See [Arynwood MCP](https://arynwood.com/mcp/) and [local AI setup services](https://arynwood.com/#services).
+
+## How this is built
+
+I decide the scope and architecture, review changes, run the available checks and ship releases.
+Claude Code and Codex work with me as pair programmers; some assisted commits carry
+co-author trailers, and others do not. [How we build](https://github.com/Arynwood-Technology/.github/blob/main/HOW-WE-BUILD.md).
