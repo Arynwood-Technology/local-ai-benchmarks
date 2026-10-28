@@ -11,6 +11,24 @@ them, so you can test your own machine and add a data point.
 
 ## Results so far
 
+### October 28, 2026 UTC: the same server after host CPU affinity and drive changes
+
+The hosting provider announced CPU affinity and drive changes without giving the settings.
+Two speed-only runs on Ollama 0.35.1, an hour apart, with the October 5 settings:
+
+| Model | Oct 5 tok/s | Oct 28 run 1 | Oct 28 run 2 |
+|---|---:|---:|---:|
+| Llama 3.2 1B (Meta) | 5.0 | 5.8 | 4.0 |
+| Gemma 3 1B (Google) | 5.8 | 8.4 | 4.1 |
+| Granite 3.3 2B (IBM) | 2.8 | 3.5 | 2.7 |
+| Gemma 2B (original) (Google) | 3.1 | 3.2 | 2.7 |
+| Llama 3.2 3B (Meta) | 2.5 | 2.3 | 1.8 |
+
+Median change from October 5: **+16.0%** in the first run and **-20.0%** in the second. The
+two runs differ by more than either differs from October, so they can't show whether the host
+changes helped. Speed on this server isn't stable from one hour to the next.
+[Method, limits and raw data](SERVER-BENCHMARK.md#rerun-after-host-changes-october-28-2026-utc).
+
 ### October 5, 2026 UTC: CPU-only web server, Ollama 0.15.2 versus 0.35.1
 
 Four KVM vCPUs presented as a Xeon Gold 6138, 8 GB RAM, no compute GPU. Five US-developed

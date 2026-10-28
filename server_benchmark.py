@@ -164,7 +164,7 @@ def main():
                 finally:
                     if not abort.is_set():
                         bench.unload(HOST, model)
-        if not abort.is_set():
+        if not abort.is_set() and os.environ.get('BENCH_SPEED_ONLY') != '1':
             fields = list(machine) + ['model', 'quantization', 'num_ctx', 'case', 'category',
                                       'run', 'passed', 'tools_called', 'call_format', 'seconds', 'reply']
             with open('tools.csv', 'w', newline='') as out:
@@ -195,7 +195,7 @@ def main():
             process.wait()
         Path('run-status.json').write_text(json.dumps({
             'aborted': abort.is_set(), 'failures': failures, 'models': MODELS,
-            'num_ctx': CTX, 'num_thread': THREADS, 'tool_num_predict': 512,
+            'speed_only': os.environ.get('BENCH_SPEED_ONLY') == '1', 'num_ctx': CTX, 'num_thread': THREADS, 'tool_num_predict': 512,
             'swap_growth_limit_mib': SWAP_LIMIT_MIB,
             'swap_guard_requires_available_below_gib': 2,
             'minimum_available_gib': min((s['available_gib'] for s in samples), default=None),

@@ -6,6 +6,11 @@ Llama 3B improved from 21 to 27 and 24 to 27 tool passes respectively; Llama 1B 
 at 24. All three made unnecessary tool calls, so the higher totals do not establish
 reliable tool routing. These are observational measurements on one shared server.
 
+**October 28 rerun:** after the hosting provider announced CPU affinity and drive changes,
+two speed-only runs on Ollama 0.35.1, an hour apart, were a median 16.0% faster and 20.0%
+slower than October 5. They differ too much to show whether the changes helped or hurt.
+See [Rerun after host changes](#rerun-after-host-changes-october-28-2026-utc).
+
 Scope requested October 4, 2026 (America/New_York). The server's UTC date at execution is October 5.
 This public report excludes addresses, hostnames, account names, provider identifiers,
 serial numbers, and model digests.
@@ -132,7 +137,7 @@ Cells show 0.15.2 → 0.35.1 passes. Llama 1B kept the same total while improvin
 
 Gemma 3 1B had the fastest generation on both versions: 9.3 and 5.8 tokens/s, with reported model memory of 1.2 and 0.9 GB. It is a useful speed-first chat candidate on this server; general answer quality was not evaluated. The 3B candidate generated 2.8 and 2.5 tokens/s, limiting interactive use.
 
-The upgrade reduced warm throughput across all five models in these runs, while tool behavior and some cold latencies improved. The fastest-throughput choice here is the installed 0.15.2 version; the upgraded tool results can justify a different choice for a particular workflow. The highest upgraded tool score is 27/39 and includes substantial unnecessary calling. Application checks and approval for destructive actions remain necessary.
+The upgrade reduced warm throughput across all five models in these runs, while tool behavior and some cold latencies improved. The fastest-throughput choice here is the installed 0.15.2 version; the upgraded tool results can justify a different choice for a particular workflow. The highest upgraded tool score is 27/39 and includes substantial unnecessary calling. Application checks and approval for destructive actions remain necessary. 0.15.2 is no longer recommended for testing.
 
 The desktop produced 12.8 tokens/s on Llama 3.2 3B; the server produced 2.8 and 2.5. They differ in core allocation, RAM, runtime versions and thread settings. This comparison challenges a universal old-desktop performance floor; it does not isolate the effect of AVX2 or AVX-512.
 
@@ -183,3 +188,90 @@ The phase files below preserve the original runs and interruption metadata. The 
 - [upgraded-tail: tools.csv](results/2026-10-05_web-server_upgraded-tail_tools.csv)
 - [upgraded-tail: tool-summary.json](results/2026-10-05_web-server_upgraded-tail_tool-summary.json)
 - [upgraded-tail: run-status.json](results/2026-10-05_web-server_upgraded-tail_run-status.json)
+
+## Rerun after host changes, October 28, 2026 UTC
+
+The hosting provider notified the owner of changes to the virtual machine's CPU affinity
+and drive settings. The specific settings were not provided. The server had restarted
+about two minutes before the first check. Inside the guest, the processor still appears
+as four KVM vCPUs presented as a Xeon Gold 6138 with AVX2 and AVX-512. No process
+affinity, isolated CPUs or systemd CPU affinity are configured, and the virtual disk
+reports as non-rotational with the `none` scheduler. The October report did not record
+disk properties, so the guest cannot show what changed.
+
+### Method
+
+Ollama 0.35.1, speed test only, with the October settings unchanged: the same five models,
+CPU-only, three threads, a 4,096-token context, niceness 15, temperature zero, seed 42, one
+cold and three warm 200-token requests, and the final memory policy. `BENCH_SPEED_ONLY=1`
+skips the tool phase and is recorded in `run-status.json`. Tool scores were not rerun.
+
+Ollama had been removed from the server since October, so 0.35.1 ran from the official
+release archive, checked against GitHub's SHA-256 digest and extracted into the user's home
+directory. Nothing was installed system-wide. The models were downloaded again during the
+first run (02:25 to 02:52 UTC); the second run (03:29 to 03:50 UTC) used those weights.
+0.15.2 was also run during this session but is not reported, because older Ollama releases
+are no longer recommended for testing.
+
+Quantization and reported memory match October for every model. Llama 3.2 3B and the
+original Gemma 2B match, by digest, desktop copies pulled before October 5. The other three
+could not be checked. The registry now limits the `gemma3:1b` tag to newer Ollama releases,
+which suggests that tag may have changed.
+
+### Results
+
+| Model | Quantization | Oct 5 tok/s | Oct 28 run 1 | Change | Oct 28 run 2 | Change |
+|---|---|---:|---:|---:|---:|---:|
+| llama3.2:1b | Q8_0 | 5.0 | 5.8 | +16.0% | 4.0 | -20.0% |
+| gemma3:1b | Q4_K_M | 5.8 | 8.4 | +44.8% | 4.1 | -29.3% |
+| granite3.3:2b | Q4_K_M | 2.8 | 3.5 | +25.0% | 2.7 | -3.6% |
+| gemma:2b-instruct-q4_0 | Q4_0 | 3.1 | 3.2 | +3.2% | 2.7 | -12.9% |
+| llama3.2:3b | Q4_K_M | 2.5 | 2.3 | -8.0% | 1.8 | -28.0% |
+
+Changes are against October 5. The median per-model change is **+16.0% in the first run**
+and **-20.0% in the second**. The second run was a median 22.9% slower than the first, about
+an hour later, with the same binary, weights and settings. Each speed is the median of three
+warm requests.
+
+| Model | Cold seconds, Oct 5 | Oct 28 run 1 | Oct 28 run 2 |
+|---|---:|---:|---:|
+| llama3.2:1b | 46.7 | 35.8 | 49.5 |
+| gemma3:1b | 42.0 | 24.1 | 42.3 |
+| granite3.3:2b | 85.5 | 62.5 | 85.9 |
+| gemma:2b-instruct-q4_0 | 66.1 | 63.0 | 71.0 |
+| llama3.2:3b | 87.1 | 88.4 | 110.8 |
+
+The first run's cold starts followed fresh downloads, so the weights were probably still in
+the disk cache. The second run and October's 0.35.1 run both loaded weights downloaded
+earlier. Disk caches were not cleared in any run.
+
+### What the rerun supports
+
+Warm throughput on 0.35.1 varied by up to 51% between two runs an hour apart, more than
+either run differs from October 5. These runs cannot show whether the host changes made
+inference faster or slower. They do show that speed on this server is not stable from one
+hour to the next. The guest reported 0.01% CPU steal time since the restart, so the
+variation does not appear as steal time inside the guest.
+
+Warm throughput is generation from weights already in memory, so a drive change would mainly
+be expected to show in cold starts. The second run's cold starts were similar to or slower
+than October's, but one cold request per model cannot establish a change.
+
+### Resource use
+
+| Run | Minimum available RAM, GiB | Maximum swap growth, MiB | Maximum 1-minute load | Stopped at reserve |
+|---|---:|---:|---:|---|
+| Run 1 | 3.538 | 0.5 | 13.28 | No |
+| Run 2 | 3.768 | 252.8 | 3.91 | No |
+
+Run 1 included downloading all five models. Load samples include processes waiting on the
+disk and other server activity. Run 2 came close to the 256 MiB swap-growth limit, but the
+guard only stops below 2 GiB available RAM. Swap growth is machine-wide and its source was
+not identified.
+
+### Files
+
+| Run | Speed | Run status |
+|---|---|---|
+| Run 1 | [CSV](results/2026-10-28_web-server_cpu-affinity-drive_ollama-0.35.1_speed.csv) | [JSON](results/2026-10-28_web-server_cpu-affinity-drive_ollama-0.35.1_run-status.json) |
+| Run 2 | [CSV](results/2026-10-28_web-server_cpu-affinity-drive_ollama-0.35.1-repeat_speed.csv) | [JSON](results/2026-10-28_web-server_cpu-affinity-drive_ollama-0.35.1-repeat_run-status.json) |

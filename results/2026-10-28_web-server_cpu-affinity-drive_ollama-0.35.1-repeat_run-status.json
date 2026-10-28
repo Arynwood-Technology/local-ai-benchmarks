@@ -1,0 +1,21 @@
+{
+  "aborted": false,
+  "failures": [],
+  "models": [
+    "llama3.2:1b",
+    "gemma3:1b",
+    "granite3.3:2b",
+    "gemma:2b-instruct-q4_0",
+    "llama3.2:3b"
+  ],
+  "speed_only": true,
+  "num_ctx": 4096,
+  "num_thread": 3,
+  "tool_num_predict": 512,
+  "swap_growth_limit_mib": 256,
+  "swap_guard_requires_available_below_gib": 2,
+  "minimum_available_gib": 3.768,
+  "maximum_swap_growth_mib": 252.8,
+  "maximum_load1": 3.9052734375,
+  "temporary_ollama_stopped": true
+}
